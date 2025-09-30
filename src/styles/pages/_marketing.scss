@@ -1,0 +1,303 @@
+/* marketing.scss */
+
+/* Contenedor principal */
+.marketing {
+    padding: 1.5rem;
+    font-family: Arial, sans-serif;
+
+    h2 {
+        margin-bottom: 1rem;
+        font-size: 1.8rem;
+    }
+
+    button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        margin-bottom: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+
+        &:hover {
+            background-color: #0056b3;
+        }
+    }
+}
+
+/* Tabla de resumen */
+.marketing-table {
+    margin-bottom: 2rem;
+    overflow-x: auto;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        th,
+        td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Estado de la campaña en tabla */
+        .actividad {
+            &.Activa {
+                color: #28a745;
+                font-weight: bold;
+            }
+
+            &.Pausada {
+                color: #745700;
+                font-weight: bold;
+            }
+
+            &.Finalizada {
+                color: #dc3545;
+                font-weight: bold;
+            }
+        }
+
+        /* Acciones: Editar y Eliminar */
+        .acciones {
+            display: flex;
+            gap: 0.5rem;
+
+            .btn-editar {
+                background-color: #0d6efd;
+                color: white;
+                border: none;
+                padding: 0.4rem 0.8rem;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.9rem;
+
+                &:hover {
+                    background-color: #0b5ed7;
+                }
+            }
+
+            .btn-eliminar {
+                background-color: #dc3545;
+                color: white;
+                border: none;
+                padding: 0.4rem 0.8rem;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.9rem;
+
+                &:hover {
+                    background-color: #b02a37;
+                }
+            }
+        }
+    }
+}
+
+/* Cards */
+.marketing-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .card {
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1rem;
+        flex: 1 1 250px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+        h4 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        p {
+            margin: 0.25rem 0;
+            font-size: 0.95rem;
+
+            strong {
+                font-weight: 600;
+            }
+        }
+
+        /* Estado de la campaña en card */
+        .estado {
+            &.Activa {
+                color: #28a745;
+                font-weight: bold;
+            }
+
+            &.Pausada {
+                color: #745700;
+                font-weight: bold;
+            }
+
+            &.Finalizada {
+                color: #dc3545;
+                font-weight: bold;
+            }
+        }
+
+        /* Tipo de campaña en card */
+        .tipo {
+            display: inline-block;
+            margin-top: 0.25rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+
+            &.Concurso { background-color: #e3f2fd; }
+            &.GoogleAds { background-color: #fce4ec; }
+            &.Amigos { background-color: #e8f5e9; }
+            &.Whatsapp { background-color: #fff3e0; }
+            &.Locales { background-color: #ede7f6; }
+            &.Marketplace { background-color: #f3e5f5; }
+        }
+
+        /* Acciones: Editar y Eliminar */
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+
+            .btn-editar {
+                background-color: #0d6efd;
+                color: white;
+                border: none;
+                padding: 0.4rem 0.8rem;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.9rem;
+
+                &:hover {
+                    background-color: #0b5ed7;
+                }
+            }
+
+            .btn-eliminar {
+                background-color: #dc3545;
+                color: white;
+                border: none;
+                padding: 0.4rem 0.8rem;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.9rem;
+
+                &:hover {
+                    background-color: #b02a37;
+                }
+            }
+        }
+    }
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+
+    .modal {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 500px;
+        max-height: 90%;
+        overflow-y: auto;
+
+        h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+
+            label {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 0.75rem;
+                font-weight: 500;
+
+                input,
+                select {
+                    padding: 0.4rem 0.6rem;
+                    margin-top: 0.25rem;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    font-size: 1rem;
+                }
+            }
+
+            .modal-actions {
+                display: flex;
+                justify-content: flex-end;
+                gap: 0.5rem;
+                margin-top: 1rem;
+
+                button {
+                    padding: 0.5rem 1rem;
+                    border-radius: 4px;
+                    font-size: 1rem;
+                    border: none;
+                    cursor: pointer;
+
+                    &:first-child {
+                        background-color: #007bff;
+                        color: white;
+
+                        &:hover {
+                            background-color: #0056b3;
+                        }
+                    }
+
+                    &:last-child {
+                        background-color: #6c757d;
+                        color: white;
+
+                        &:hover {
+                            background-color: #5a6268;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .marketing-cards {
+        flex-direction: column;
+    }
+
+    .marketing-table table,
+    .marketing-table th,
+    .marketing-table td {
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,46 @@
+@use "../base/colors" as colors;
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 2rem;
+  padding: 1.85rem 11.5rem;  
+  background-color: colors.$white;
+  margin-top: 5rem;
+  min-height: calc(100vh - 15rem);
+
+  &__content {
+    margin-bottom: 2rem;
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: colors.$green;
+    }
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: colors.$tertiary;
+    }
+  }
+
+  &__image {
+    display: flex;
+    gap: 2rem;
+
+    img {
+      width: 100%;
+      max-height: 320px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    &__image, &__content {
+      width: 100%;
+    }
+  }
+}

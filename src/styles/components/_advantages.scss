@@ -1,0 +1,44 @@
+@use "../base/colors" as colors;
+
+.advantages {
+  padding: 2rem;
+  background-color: colors.$grey;
+  padding-inline: 10rem;
+
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .advantages-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+}
+
+.advantage-item {
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+
+  .icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .text {
+    h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.25rem;
+    }
+
+    p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+  }
+}

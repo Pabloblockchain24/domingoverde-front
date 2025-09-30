@@ -1,0 +1,6 @@
+---
+import RecipeDetailWrapper from "./RecipeDetailWrapper.jsx";
+const { id } = Astro.params;
+---
+
+<RecipeDetailWrapper client:load recipeId={id} />

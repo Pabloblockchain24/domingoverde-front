@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/layout.astro";
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
+---
+  <Layout pageTitle="Home">
+    <Header />
+    <section class="campo">
+      <div class="campo__content">
+        <h2>Somos productores</h2>
+        <p>Cultivamos nuestras paltas en nuestro propio campo ubicado en Santo Domingo, lo que nos permite asegurar su frescura, sabor y calidad en cada etapa del proceso. Al eliminar intermediarios, controlamos directamente la cosecha, selección y despacho, llevándote un producto natural, recién salido del árbol y listo para disfrutar en tu mesa.</p>
+      </div>
+      <div class="campo__image">
+        <img src="/campo.jpg", alt="Imagen del campo de origen" loading="lazy" />
+        <img src="/campo_2.jpg" alt="Imagen del campo de origen 2" loading="lazy"/>
+      </div>
+    </section>
+    <Footer />
+  </Layout>

@@ -1,0 +1,11 @@
+---
+import Layout from "../layouts/layout.astro";
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
+import CartWidget from "../components/cart/CartWidget";
+---
+<Layout pageTitle="Home">
+  <Header />
+  <CartWidget client:only="react" />
+  <Footer />
+</Layout>

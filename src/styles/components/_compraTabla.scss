@@ -1,0 +1,160 @@
+@use "../base/colors" as colors;
+
+.compras {
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: colors.$tertiary;
+  }
+
+  .add-button {
+    margin-bottom: 1rem;
+    padding: 0.6rem 1.2rem;
+    background-color: colors.$green;
+    border: none;
+    border-radius: 6px;
+    color: colors.$white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+
+    &:hover {
+      background-color: colors.$ligth-green;
+    }
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    background-color: colors.$white;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+
+    th {
+      background-color: colors.$grey;
+      text-align: left;
+      padding: 0.8rem 1rem;
+      font-weight: 600;
+      color: colors.$tertiary;
+      border-bottom: 1px solid colors.$grey;
+    }
+
+    td {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid colors.$grey;
+      vertical-align: baseline;
+
+      ul {
+        margin: 0;
+        padding-left: 1.2rem;
+
+        li {
+          margin-bottom: 0.2rem;
+        }
+      }
+
+      span {
+        font-weight: 500;
+        font-size: 0.85rem;
+        display: inline-block;
+        min-width: 90px;
+        text-align: center;
+      }
+    }
+
+    tr:hover {
+      background-color: colors.$grey;
+    }
+
+    .estado {
+      font-weight: 600;
+      text-transform: capitalize;
+      padding: 0.4rem 0.8rem;
+      text-align: center;
+      color: colors.$tertiary;
+      min-width: 120px;
+      display: inline-block;
+      white-space: nowrap;
+      border-radius: 6px;
+    }
+
+    .estado.pendiente {
+      background-color: colors.$yellow;
+    }
+
+    .estado.cancelada {
+      background-color: colors.$ligth-red;
+    }
+
+    .estado.recibida {
+      background-color: colors.$ligth-green;
+    }
+
+    .estado.pagado {
+      background-color: colors.$ligth-green;
+    }
+
+
+    .button-actions {
+      display: flex;
+      gap: 0.5rem;
+
+      button {
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+        padding: 0.4rem 0.6rem;
+
+        &:first-child {
+          background: colors.$yellow;
+        }
+        &:last-child {
+          background: colors.$red;
+          color: colors.$white;
+        }
+      }
+    }
+  }
+}
+
+.compras-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.5rem;
+  background: #ffffff;
+  border-radius: 0.8rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #065f46; // verde oscuro
+    margin: 0;
+  }
+
+  .btn-agregar {
+    background: #10b981; // verde esmeralda
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: #059669; // verde más intenso
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      background: #047857; // verde aún más oscuro
+      transform: translateY(0);
+    }
+  }
+}

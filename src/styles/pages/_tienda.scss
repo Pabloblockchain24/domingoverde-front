@@ -1,0 +1,103 @@
+@use "../base/colors" as colors;
+
+.products-page {
+  margin: 5rem auto;
+  padding: 2rem 8rem;
+  min-height: 100vh;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: colors.$tertiary;
+    text-align: center;
+  }
+
+  .filters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    label {
+      font-size: 1rem;
+      font-weight: 500;
+    color: colors.$tertiary;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      select {
+        margin-top: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        border: 1px solid colors.$dark-grey;
+        font-size: 1rem;
+        transition: all 0.2s ease-in-out;
+
+        &:focus {
+          outline: none;
+          border-color: colors.$ligth-green;
+          box-shadow: 0 0 6px rgba(92, 184, 92, 0.3);
+        }
+      }
+    }
+  }
+
+  .product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+}
+
+.product-card {
+  background-color: colors.$white;
+  border: 1px solid colors.$grey;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+  max-width: 380px;
+
+  &:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    color: colors.$tertiary;
+    margin-bottom: 0.5rem;
+  }
+
+  .price {
+    font-size: 1rem;
+    font-weight: 600;
+    color: colors.$green;
+  }
+
+  button {
+    margin-top: 0.8rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    background-color: colors.$ligth-green;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+
+    &:hover {
+      background-color: colors.$green;
+    }
+  }
+}

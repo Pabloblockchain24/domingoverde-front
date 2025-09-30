@@ -1,0 +1,17 @@
+---
+import "glider-js/glider.min.css";
+import FeaturedProductsWrapper from "./FeaturedProductsWrapper.jsx";
+---
+
+<div class="products">
+  <h2>🌟 Los más vendidos</h2>
+
+  <!-- Montar todo React -->
+  <FeaturedProductsWrapper client:load />
+
+  <div class="go-to-shop">
+    <a href="/tienda" class="shop-button">Ir a la tienda</a>
+  </div>
+
+  <script type="module" src="/src/scripts/init-glider.js"></script>
+</div>

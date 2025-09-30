@@ -1,0 +1,193 @@
+@use "../base/colors" as colors;
+
+.checkout-page {
+  max-width: 480px;
+  margin: 4rem auto;
+  background: colors.$white;
+  padding: 3rem 4rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+  h2 {
+    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: colors.$tertiary;
+  }
+
+  .checkout-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+
+    .checkout-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      border-bottom: 1px solid colors.$grey;
+      padding-bottom: 0.5rem;
+      color: colors.$tertiary;
+
+      .item-img {
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+        border-radius: 6px;
+        overflow: hidden;
+        border: 1px solid colors.$grey;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+      }
+
+      .item-info {
+        flex: 1;
+
+        .item-name {
+          font-weight: 600;
+          font-size: 1rem;
+          margin-bottom: 0.2rem;
+          color: colors.$tertiary;
+        }
+
+        .item-price {
+          font-size: 0.95rem;
+          font-weight: 500;
+          color: colors.$dark-grey;
+        }
+      }
+    }
+  }
+
+  .checkout-total {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: right;
+    color: colors.$tertiary;
+  }
+
+  .checkout-section {
+    margin: 2rem 0;
+
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: colors.$tertiary;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: colors.$tertiary;
+
+      .helper-text {
+        display: block;
+        font-size: 0.9rem;
+        color: colors.$dark-grey;
+        margin-top: 0.2rem;
+      }
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    select.select-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      margin-top: 0.3rem;
+      margin-bottom: 1rem;
+      border: 1px solid colors.$grey;
+      border-radius: 6px;
+      font-size: 1rem;
+      background-color: colors.$white;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: colors.$green;
+      }
+    }
+
+    select.select-input {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='gray' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1rem;
+    }
+  }
+
+  .finish-btn {
+    width: 100%;
+    background-color: colors.$ligth-green;
+    color: colors.$white;
+    padding: 0.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: colors.$green;
+    }
+  }
+
+  a {
+    color: colors.$ligth-green;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.payment-options {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.payment-card {
+  flex: 1 1 45%;
+  background-color: colors.$grey;
+  padding: 1rem;
+  border: 2px solid colors.$dark-grey;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+
+  i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: colors.$tertiary;
+  }
+
+  span {
+    display: block;
+    font-weight: 600;
+    color: colors.$tertiary;
+    font-size: 0.95rem;
+  }
+
+  &:hover {
+    border-color: colors.$ligth-green;
+  }
+
+  &.active {
+    border-color: colors.$ligth-green;
+    background-color: colors.$grey;
+  }
+}

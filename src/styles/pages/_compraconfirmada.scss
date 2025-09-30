@@ -1,0 +1,38 @@
+@use "../base/colors" as colors;
+
+.compraconfirmada-container {
+  max-width: 480px;
+  margin: 10rem auto;
+  padding: 2rem;
+  text-align: center;
+  background: colors.$white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: colors.$ligth-green;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: colors.$tertiary;
+    margin-bottom: 2rem;
+  }
+
+  .btn-home {
+    color: colors.$ligth-green;
+    color:colors.$white;
+    padding: 0.9rem 2rem;
+    font-weight: 600;
+    border-radius: 0.6rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+
+    &:hover {
+      background-color: colors.$green;
+    }
+  }
+}

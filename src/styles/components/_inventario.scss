@@ -1,0 +1,117 @@
+@use "../base/colors" as colors;
+
+
+/* inventario.scss */
+
+/* Contenedor general */
+.inventario {
+  padding: 1.5rem;
+  h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Resumen */
+.inventario-resumen {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  p {
+    font-size: 1rem;
+    margin: 0.3rem 0;
+    strong {
+      color: #555;
+    }
+  }
+}
+
+/* Tabla de inventario */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+  font-family: Arial, sans-serif;
+  font-size: 0.95rem;
+
+  thead {
+    background-color: #007bff;
+    color: #fff;
+    th {
+      padding: 0.8rem;
+      text-align: center;
+      border-bottom: 2px solid colors.$green;
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      &:hover {
+        background-color: #e6f2ff;
+      }
+    }
+    td {
+      padding: 0.7rem;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+      ul{
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+}
+
+/* Alineación de números */
+td:nth-child(n+2) {
+  text-align: center;
+}
+
+/* Margen de los botones (si agregas botones de acción) */
+button {
+  padding: 0.3rem 0.6rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+/* Opcional: estilos responsive */
+@media (max-width: 768px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead tr {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 1rem;
+    td {
+      display: flex;
+      justify-content: center;
+      padding: 0.5rem 0.7rem;
+      border-bottom: 1px solid #ddd;
+      &:before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

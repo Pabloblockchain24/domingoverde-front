@@ -1,0 +1,130 @@
+@use "../base/colors" as colors;
+
+.cart-widget {
+  margin: 7rem auto;
+  background: colors.$white;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 480px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+
+  h3 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  .empty {
+    color: colors.$tertiary;
+    text-align: center;
+  }
+
+  .cart-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .cart-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid colors.$grey;
+
+    .item-image {
+      width: 60px;
+      height: 60px;
+      flex-shrink: 0;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid colors.$grey;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+
+    .item-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+
+      strong {
+        font-size: 1rem;
+        color: colors.$tertiary;
+      }
+
+      .quantity-controls {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        button {
+          width: 28px;
+          height: 28px;
+          background-color: colors.$ligth-green;
+          border: none;
+          color: colors.$white;
+          font-size: 1rem;
+          font-weight: bold;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.2s;
+
+          &:hover {
+            background-color: colors.$green;
+          }
+        }
+
+        span {
+          min-width: 24px;
+          text-align: center;
+          font-weight: 500;
+        }
+      }
+
+      .price {
+        color: colors.$tertiary;
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+    }
+
+    .remove-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: colors.$red;
+      cursor: pointer;
+    }
+  }
+
+  .cart-total {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    text-align: right;
+  }
+
+  .checkout-btn {
+    display: block;
+    text-align: center;
+    background-color: colors.$ligth-green;
+    color: colors.$white;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+
+    &:hover {
+      background-color: colors.$green;
+    }
+  }
+}

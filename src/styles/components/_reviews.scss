@@ -1,0 +1,92 @@
+.review-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    margin-block: 2rem;
+}
+
+.review-list {
+  display: flex;
+  flex-wrap: wrap; // permite que los items salten a la siguiente línea
+  justify-content: center; // centra los items horizontalmente
+  gap: 1.5rem; // espacio entre reviews
+  padding: 2rem;
+}
+
+.review-item {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  overflow: hidden;
+  flex: 1 1 300px; // cada review ocupa mínimo 300px y se adapta
+  max-width: 350px; // límite para que no se estiren demasiado
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  &__image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__stars {
+    display: flex;
+    gap: 0.25rem;
+
+    .star {
+      width: 20px;
+      height: 20px;
+      color: #d1d5db;
+
+      &.active {
+        color: #fbbf24;
+        fill: #fbbf24;
+      }
+    }
+  }
+
+  &__comment {
+    font-size: 1rem;
+    font-style: italic;
+    color: #374151;
+    line-height: 1.5;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #6b7280;
+
+    .name {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .date {
+      font-style: italic;
+    }
+  }
+}

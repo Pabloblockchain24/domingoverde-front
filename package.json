@@ -1,0 +1,36 @@
+{
+  "name": "domingoverde_front",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "sass": "sass --watch ./src/styles/main.scss ./src/styles.css",
+    "start": "npm run sass & npm run dev"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.3.1",
+    "@tabler/icons": "^3.34.0",
+    "astro": "^5.13.9",
+    "axios": "^1.12.2",
+    "chart.js": "^4.5.0",
+    "chartjs-plugin-datalabels": "^2.2.0",
+    "date-fns": "^4.1.0",
+    "glider-js": "^1.7.9",
+    "lucide-react": "^0.544.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.9.3",
+    "react-spinners": "^0.17.0",
+    "recharts": "^3.2.1",
+    "swiper": "^11.2.8",
+    "zustand": "^5.0.5"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "sass": "^1.89.2"
+  }
+}

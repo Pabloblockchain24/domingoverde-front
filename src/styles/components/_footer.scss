@@ -1,0 +1,63 @@
+@use "../base/colors" as colors;
+
+.footer {
+  background-color: colors.$grey;
+  color: colors.$tertiary;
+  padding-inline: 4rem;
+  padding-block: 2rem; 
+  font-size: 0.95rem;
+
+  a {
+    color: colors.$green;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    justify-content: space-between;
+    text-align: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__brand {
+    flex: 1 1 200px;
+
+    h2 {
+      font-size: 1.5rem;
+      color: colors.$blue;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__contacto,
+  &__redes {
+    flex: 1 1 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    p {
+      margin: 0.2rem 0;
+    }
+  }
+
+  &__bottom {
+    border-top: 1px solid colors.$grey;
+    padding-top: 1rem;
+    text-align: center;
+
+    p {
+      margin: 0.3rem 0;
+    }
+  }
+}

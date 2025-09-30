@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/layout.astro";
+import Header from "../../components/header.astro";
+import Footer from "../../components/footer.astro";
+import RecipeDetailWrapper from "../../components/recipes/RecipeDetailWrapper.jsx";
+
+// 🔹 Aquí traes las recetas desde tu backend o API
+export async function getStaticPaths() {
+  // Llamar a tu backend para traer todas las recetas
+  const res = await fetch("https://domingoverde-back.vercel.app/api/recipes");
+  const recipes = await res.json();
+
+  return recipes.map((recipe) => ({
+    params: { id: recipe._id },
+    props: { id: recipe._id },
+  }));
+}
+
+const { id } = Astro.props;
+---
+
+<Layout pageTitle="Detalle receta">
+  <Header />
+  <RecipeDetailWrapper client:only="react" recipeId={id} />
+  <Footer />
+</Layout>
