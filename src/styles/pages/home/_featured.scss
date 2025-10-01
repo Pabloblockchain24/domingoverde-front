@@ -1,0 +1,206 @@
+@use "../../base/colors" as colors;
+
+/* ===========================
+   CONTENEDOR PRINCIPAL
+=========================== */
+.featured_container {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 2rem;
+
+  h2 {
+    font-size: 1.75rem;
+
+    @media (max-width: 768px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-block: 1.25rem;
+    gap: 1rem;
+  }
+}
+
+/* ===========================
+   GLIDER / CARRUSEL
+=========================== */
+.glider-container {
+  position: relative;
+  padding: 1rem;
+
+  .glider {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0;
+    height: 280px;
+
+    .glider-track {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      flex: 1 !important;
+    }
+  }
+
+  /* Botones carrusel */
+  .custom-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.25s ease, transform 0.2s ease;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    &:hover {
+      color: colors.$green;
+      transform: translateY(-50%) scale(1.2);
+    }
+
+    &:active {
+      transform: translateY(-50%) scale(1.1);
+    }
+  }
+
+  .glider-prev {
+    left: -20px;
+  }
+
+  .glider-next {
+    right: -20px;
+  }
+}
+
+/* ===========================
+   TARJETAS DE PRODUCTOS
+=========================== */
+.featured-item {
+  scroll-snap-align: start;
+  background-color: colors.$white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.75rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  img {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    object-position: center;
+    margin-bottom: 0.5rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+    margin: 0.25rem 0;
+    color: colors.$tertiary;
+    font-weight: 600;
+  }
+
+  .category {
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 0.25rem;
+  }
+
+  .price {
+    font-weight: 700;
+    color: colors.$ligth-green;
+    font-size: 1.1rem;
+    margin-top: auto;
+  }
+}
+
+/* ===========================
+   BOTÓN "IR A LA TIENDA"
+=========================== */
+.go-to-shop {
+  text-align: center;
+  margin-block: 1rem;
+
+  .shop-button {
+    background-color: colors.$green;
+    color: colors.$white;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+
+    @media (max-width: 768px) {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 420px) {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    &:hover {
+      background-color: colors.$ligth-green;
+    }
+  }
+}
+
+/* ===========================
+   BOTONES PERSONALIZADOS
+=========================== */
+.custom-arrow {
+  background: colors.$white;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  width: 24px;
+  height: 24px;
+
+  svg {
+    stroke: colors.$tertiary;
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover {
+    background: colors.$ligth-green;
+
+    svg {
+      stroke: colors.$white;
+    }
+  }
+}
+
+/* ===========================
+   RESPONSIVE EXTRA
+=========================== */
+@media (max-width: 640px) {
+  .featured-item img {
+    height: 140px;
+  }
+}

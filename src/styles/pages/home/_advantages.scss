@@ -1,0 +1,86 @@
+@use "../../base/colors" as colors;
+
+.advantages {
+  background-color: colors.$grey;
+  padding: 3rem 2rem;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1.5rem;
+  }
+
+  .advantages-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @media (max-width: 768px) {
+      gap:1rem;
+    }
+  }
+}
+
+.advantage-item {
+  background: colors.$white;
+  padding: 1rem 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  @media (max-width: 768px) {
+    padding: 0.875rem 0.7rem;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    color: colors.$green;
+
+    @media (max-width: 768px) {
+      font-size: 1.7rem;
+    }
+    @media (max-width: 420px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  .text {
+    h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: colors.$primary;
+
+      @media (max-width: 768px) {
+        font-size: 1rem;
+      }
+
+      @media (max-width: 420px) {
+        font-size: 0.8rem;
+      }
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: colors.$tertiary;
+
+      @media (max-width: 768px) {
+        font-size: 0.75rem;
+      }
+
+      @media (max-width: 420px) {
+        font-size: 0.7rem;
+      }
+    }
+  }
+}

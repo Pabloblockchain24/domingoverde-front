@@ -1,23 +1,42 @@
-.review-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.25rem;
-    margin-block: 2rem;
+.review-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin-block: 2rem;
+
+  h2 {
+    font-size: 1.75rem;
+
+    @media (max-width: 768px) {
+      font-size: 1.25rem;
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    margin-block: 1.25rem;
+    gap: 1rem;
+  }
 }
 
 .review-list {
   display: flex;
-  flex-wrap: wrap; // permite que los items salten a la siguiente línea
-  justify-content: center; // centra los items horizontalmente
-  gap: 1.5rem; // espacio entre reviews
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
   padding: 2rem;
+
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    gap: 1rem;
+  }
 }
 
 .review-item {
   background: #fff;
   border: 1px solid #e5e7eb;
-  border-radius: 1rem;
   overflow: hidden;
   flex: 1 1 300px; // cada review ocupa mínimo 300px y se adapta
   max-width: 350px; // límite para que no se estiren demasiado
@@ -25,6 +44,11 @@
   flex-direction: column;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease;
+
+  @media (max-width: 768px) {
+    flex: 1 1 280px; // cada review ocupa mínimo 300px y se adapta
+    max-width: 320px; // límite para que no se estiren demasiado
+  }
 
   &:hover {
     transform: translateY(-4px);
@@ -34,6 +58,10 @@
     width: 100%;
     height: 200px;
     overflow: hidden;
+
+    @media (max-width: 768px) {
+      height: 170px;
+    }
 
     img {
       width: 100%;
@@ -71,6 +99,14 @@
     font-style: italic;
     color: #374151;
     line-height: 1.5;
+
+    @media (max-width: 768px) {
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.8rem;
+    }
   }
 
   &__footer {
@@ -80,6 +116,10 @@
     font-size: 0.85rem;
     color: #6b7280;
 
+    @media (max-width: 480px) {
+      font-size: 0.8rem;
+    }
+
     .name {
       font-weight: 600;
       color: #111827;
@@ -88,5 +128,7 @@
     .date {
       font-style: italic;
     }
+
+
   }
 }

@@ -1,20 +1,36 @@
-@use './components/header'; 
-@use './components/ventaModal'; 
-@use './components/banner'; 
-@use './components/advantages'; 
-@use './components/products'; 
-@use './components/footer'; 
-@use './components/compraTabla'; 
-@use './components/inventario'; 
-@use './components/loader'; 
-@use './components/reviews'; 
-@use './pages/tienda'; 
-@use './pages/marketing'; 
-@use './pages/metricas';
-@use './pages/cart'; 
-@use './pages/checkout'; 
-@use './pages/compraconfirmada'; 
-@use './pages/campo'; 
-@use './pages/recipe'; 
-@use './pages/adminDashboard'; 
 @use './theme/theme'; 
+
+// Estilos del home
+@use './pages/home/banner'; 
+@use './pages/home/advantages'; 
+@use './pages/home/reviews'; 
+@use './pages/home/featured'; 
+
+
+//Estilos del campo
+@use './pages/farm/campo'; 
+
+//Estilos del cart
+@use './pages/cart/cart'; 
+@use './pages/cart/checkout'; 
+@use './pages/cart/compraConfirmada'; 
+
+//Estilos del admin
+@use './pages/admin/marketing';
+@use './pages/admin/metricas';
+@use './pages/admin/adminDashboard'; 
+@use './pages/admin/inventario'; 
+@use './pages/admin/compras'; 
+@use './pages/admin/ventaModal'; 
+
+
+//Estilos de receetas
+@use './pages/recipes/recipe'; 
+
+//Estilos de la tienda
+@use './pages/shop/tienda';
+
+//Estilos de la componentes
+@use './components/header'; 
+@use './components/footer'; 
+@use './components/loader'; 

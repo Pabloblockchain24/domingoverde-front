@@ -12,7 +12,7 @@ export default function ReviewList() {
 
   return (
     <div className="review-container">
-      <h2> 🔍 Reseñas 🔍 </h2>
+      <h2> 🔍 Reseñas </h2>
       <div className="review-list">
         {loading ? (
           <Loader />

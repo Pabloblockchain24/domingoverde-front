@@ -18,13 +18,27 @@ export default function FeaturedProductsContent() {
     const gliderEl = document.querySelector(".glider");
     if (gliderEl) {
       new Glider(gliderEl, {
-        slidesToShow: 3,
+        slidesToShow: 1,
         slidesToScroll: 1,
         draggable: true,
         arrows: {
           prev: ".glider-prev",
           next: ".glider-next",
         },
+        responsive: [
+          {
+            breakpoint: 640, // móviles
+            settings: { slidesToShow: 2, slidesToScroll: 1 },
+          },
+          {
+            breakpoint: 1024, // tablets
+            settings: { slidesToShow: 3, slidesToScroll: 1 },
+          },
+          {
+            breakpoint: 1440, // desktop grande
+            settings: { slidesToShow: 4, slidesToScroll: 1 },
+          },
+        ],
       });
     }
   }, [featured]);
@@ -35,7 +49,7 @@ export default function FeaturedProductsContent() {
   return (
     <div className="glider-container">
       <div className="glider">
-        {featured.map(product => (
+        {featured.map((product) => (
           <FeaturedItem
             key={product._id}
             img={product.image}
@@ -46,14 +60,15 @@ export default function FeaturedProductsContent() {
         ))}
       </div>
 
+      {/* Flechas navegación */}
       <button aria-label="Anterior" className="glider-prev custom-arrow" type="button">
-        <svg viewBox="0 0 24 24" fill="none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <polyline points="15 18 9 12 15 6" />
         </svg>
       </button>
 
       <button aria-label="Siguiente" className="glider-next custom-arrow" type="button">
-        <svg viewBox="0 0 24 24" fill="none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <polyline points="9 18 15 12 9 6" />
         </svg>
       </button>
