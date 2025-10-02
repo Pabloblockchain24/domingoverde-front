@@ -1,0 +1,104 @@
+@use "../../base/colors" as colors;
+
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background: colors.$grey;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // 🔑 divide contenido y footer
+  transition: width 0.3s ease;
+  position: relative;
+  min-height: 100vh; // asegura que ocupe todo el alto
+
+  .toggle-btn {
+    padding: 0.3rem;
+    cursor: pointer;
+    color: colors.$green;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 0px;
+    background: transparent;
+
+    &:hover {
+      box-shadow: inset 0 0 0 1px colors.$dark-grey;
+      transition: all 0.3s ease;
+    }
+  }
+
+  &.closed {
+    width: 60px;
+    padding: 1rem 0.5rem;
+    overflow: hidden;
+
+    h3,
+    ul,
+    .sidebar-footer {
+      display: none;
+    }
+  }
+
+  h3 {
+    margin-bottom: 1rem;
+    color: colors.$tertiary;
+    font-weight: 700;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1; // ocupa el espacio disponible
+
+    li {
+      padding: 0.8rem 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      color: colors.$tertiary;
+      font-weight: 600;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: colors.$ligth-green;
+        color: colors.$white;
+      }
+
+      &.active {
+        background: colors.$green;
+        color: colors.$white;
+      }
+    }
+  }
+
+  /* Footer con botón logout */
+  .sidebar-footer {
+    margin-top: auto; // asegura que quede abajo
+    padding-top: 1rem;
+    border-top: 1px solid colors.$dark-grey;
+    display: flex;
+    justify-content: center;
+
+    .logout-btn {
+      background: colors.$dark-grey;
+      color: colors.$white;
+      border: none;
+      border-radius: 6px;
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.2s ease;
+
+      &:hover {
+        background: colors.$green;
+        transform: translateY(-2px);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+}

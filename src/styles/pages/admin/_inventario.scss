@@ -85,33 +85,3 @@ button {
   }
 }
 
-/* Opcional: estilos responsive */
-@media (max-width: 768px) {
-  table,
-  thead,
-  tbody,
-  th,
-  td,
-  tr {
-    display: block;
-  }
-
-  thead tr {
-    display: none;
-  }
-
-  tr {
-    margin-bottom: 1rem;
-    td {
-      display: flex;
-      justify-content: center;
-      padding: 0.5rem 0.7rem;
-      border-bottom: 1px solid #ddd;
-      &:before {
-        content: attr(data-label);
-        font-weight: bold;
-        text-transform: uppercase;
-      }
-    }
-  }
-}

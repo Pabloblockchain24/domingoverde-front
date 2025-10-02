@@ -1,5 +1,7 @@
 ---
 import "../styles.css"
+import ToastProvider from "../components/ToastProvider"
+
 ---
 <html lang="es">
   <head>
@@ -23,5 +25,6 @@ import "../styles.css"
 
   <body>
       <slot />
+      <ToastProvider client:load />
   </body>
 </html>

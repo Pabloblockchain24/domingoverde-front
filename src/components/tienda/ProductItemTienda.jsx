@@ -1,4 +1,6 @@
 import { useCartStore } from "../../store/cartStore.js"
+import { toast } from "react-toastify";
+
 
 export default function ProductItemTienda({ _id, title, price, image }) {
   const addToCart = useCartStore((state) => state.addToCart);
@@ -11,7 +13,7 @@ export default function ProductItemTienda({ _id, title, price, image }) {
       image,
       quantity: 1,
     });
-    alert(`✅ Se agregó "${title}" al carrito`);
+    toast.success(`✅ "${title}" se agregó al carrito`);
   };
 
   return (

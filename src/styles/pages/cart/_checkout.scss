@@ -1,38 +1,46 @@
 @use "../../base/colors" as colors;
 
+.checkout-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .checkout-page {
-  max-width: 480px;
-  margin: 4rem auto;
+  max-width: 500px;
+  margin: 2rem;
   background: colors.$white;
-  padding: 3rem 4rem;
-  border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 
   h2 {
-    margin-bottom: 1.2rem;
-    font-size: 1.5rem;
-    font-weight: 600;
+    margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+    font-weight: 700;
     color: colors.$tertiary;
+    text-align: center;
   }
 
+  /* Lista de productos */
   .checkout-list {
     list-style: none;
     padding: 0;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.8rem;
 
     .checkout-item {
       display: flex;
       align-items: center;
       gap: 1rem;
-      font-size: 1rem;
-      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
       border-bottom: 1px solid colors.$grey;
-      padding-bottom: 0.5rem;
+      padding-bottom: 0.8rem;
       color: colors.$tertiary;
 
       .item-img {
-        width: 60px;
-        height: 60px;
+        width: 55px;
+        height: 55px;
         flex-shrink: 0;
         border-radius: 6px;
         overflow: hidden;
@@ -42,22 +50,26 @@
           width: 100%;
           height: 100%;
           object-fit: cover;
-          display: block;
         }
       }
 
-      .item-info {
-        flex: 1;
+      .checkout-item-info {
+       display: flex;
+       flex-direction: column;
+       justify-content: space-between;
 
         .item-name {
           font-weight: 600;
-          font-size: 1rem;
+          font-size: 0.95rem;
           margin-bottom: 0.2rem;
           color: colors.$tertiary;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .item-price {
-          font-size: 0.95rem;
+          font-size: 0.9rem;
           font-weight: 500;
           color: colors.$dark-grey;
         }
@@ -65,20 +77,23 @@
     }
   }
 
+  /* Total */
   .checkout-total {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.2rem;
+    font-weight: 700;
     margin-bottom: 1.5rem;
     text-align: right;
     color: colors.$tertiary;
   }
 
+  /* Secciones */
   .checkout-section {
     margin: 2rem 0;
 
     h3 {
       font-size: 1.2rem;
       margin-bottom: 1rem;
+      font-weight: 600;
       color: colors.$tertiary;
     }
 
@@ -90,7 +105,7 @@
 
       .helper-text {
         display: block;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         color: colors.$dark-grey;
         margin-top: 0.2rem;
       }
@@ -100,7 +115,7 @@
     input[type="tel"],
     select.select-input {
       width: 100%;
-      padding: 0.75rem 1rem;
+      padding: 0.7rem 1rem;
       margin-top: 0.3rem;
       margin-bottom: 1rem;
       border: 1px solid colors.$grey;
@@ -112,6 +127,7 @@
       &:focus {
         outline: none;
         border-color: colors.$green;
+        box-shadow: 0 0 0 3px rgba(colors.$ligth-green, 0.2);
       }
     }
 
@@ -124,17 +140,18 @@
     }
   }
 
+  /* Botón Finalizar */
   .finish-btn {
     width: 100%;
     background-color: colors.$ligth-green;
     color: colors.$white;
-    padding: 0.8rem;
-    font-size: 1rem;
+    padding: 0.9rem;
+    font-size: 1.05rem;
     font-weight: 600;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.25s ease;
 
     &:hover {
       background-color: colors.$green;
@@ -144,6 +161,7 @@
   a {
     color: colors.$ligth-green;
     text-decoration: underline;
+    font-size: 0.9rem;
 
     &:hover {
       text-decoration: none;
@@ -151,15 +169,16 @@
   }
 }
 
+/* Opciones de pago */
 .payment-options {
   display: flex;
   gap: 1rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; // siempre en línea
   margin-top: 1rem;
 }
 
 .payment-card {
-  flex: 1 1 45%;
+  flex: 1;
   background-color: colors.$grey;
   padding: 1rem;
   border: 2px solid colors.$dark-grey;
@@ -169,8 +188,8 @@
   transition: all 0.2s ease-in-out;
 
   i {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
     display: block;
     color: colors.$tertiary;
   }
@@ -179,7 +198,8 @@
     display: block;
     font-weight: 600;
     color: colors.$tertiary;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    line-height: 1.2;
   }
 
   &:hover {
@@ -188,6 +208,34 @@
 
   &.active {
     border-color: colors.$ligth-green;
-    background-color: colors.$grey;
+    background-color: colors.$grey
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  .checkout-page {
+    padding: 1.5rem;
+    margin: 2rem;
+  }
+
+  .checkout-page h2 {
+    font-size: 1.4rem;
+  }
+
+  .checkout-item .item-info .item-name {
+    font-size: 0.85rem;
+  }
+
+  .payment-card {
+    padding: 0.7rem;
+
+    i {
+      font-size: 1.2rem;
+    }
+
+    span {
+      font-size: 0.75rem;
+    }
   }
 }

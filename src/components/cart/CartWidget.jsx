@@ -21,6 +21,7 @@ export default function CartWidget() {
   };
 
   return (
+    <div className="cart-wrapper"> 
     <div className="cart-widget">
       <h3>🛒 Tu Carrito</h3>
 
@@ -65,5 +66,7 @@ export default function CartWidget() {
         </>
       )}
     </div>
+    </div> 
+
   );
 }

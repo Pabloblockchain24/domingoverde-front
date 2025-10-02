@@ -1,0 +1,26 @@
+/* src/styles/toastify.css */
+.Toastify__toast {
+  font-size: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+}
+
+/* Success y error personalizados */
+.Toastify__toast--success {
+  background: #4CAF50;
+  color: #fff;
+}
+
+.Toastify__toast--error {
+  background: #f44336;
+  color: #fff;
+}
+
+/* ===== Responsive: Mobile ===== */
+@media (max-width: 600px) {
+  .Toastify__toast {
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+    min-width: 180px;  /* ancho más compacto */
+  }
+}

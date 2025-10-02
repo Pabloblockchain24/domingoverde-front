@@ -18,10 +18,12 @@
 //Estilos del admin
 @use './pages/admin/marketing';
 @use './pages/admin/metricas';
-@use './pages/admin/adminDashboard'; 
+@use './pages/admin/ventas'; 
 @use './pages/admin/inventario'; 
 @use './pages/admin/compras'; 
 @use './pages/admin/ventaModal'; 
+@use './pages/admin/sidebar'; 
+
 
 
 //Estilos de receetas
@@ -29,6 +31,8 @@
 
 //Estilos de la tienda
 @use './pages/shop/tienda';
+@use './pages/shop/toastify';
+
 
 //Estilos de la componentes
 @use './components/header'; 

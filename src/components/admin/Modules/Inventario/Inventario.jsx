@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import InventarioTabla from "./InventarioTabla";
 import { useOrders } from "../../../../context/OrdersContext";
 import { usePurchases } from "../../../../context/PurchasesContext";
-
+import Loader from "../../../loader";
 
 
 export default function Inventario() {

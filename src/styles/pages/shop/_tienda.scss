@@ -2,9 +2,12 @@
 
 .products-page {
   margin: 3rem auto;
-  padding: 2rem 6rem;
+  padding: 2rem;
   min-height: 100vh;
-  max-width: 1400px;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   h1 {
     font-size: clamp(1.8rem, 2.5vw, 2.4rem);
@@ -18,6 +21,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 2rem;
+    max-width: 50%;
 
     label {
       font-size: 1rem;
@@ -44,10 +48,11 @@
     }
   }
 
-  /* Grid de productos */
+  /* Grid de productos (fluid) */
   .product-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center; // centrar tarjetas
     gap: 2rem;
     padding: 0 1rem;
   }
@@ -107,8 +112,13 @@
   }
 }
 
-/* Responsivo */
+/* ======= Responsivo ======= */
 @media (max-width: 1024px) {
+  .product-list {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 0.8rem !important; // más compacto en mobile
+  }
+
   .products-page {
     padding: 2rem 3rem;
   }
@@ -119,6 +129,10 @@
     padding: 1.5rem;
   }
 
+  .product-list {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
   .filters {
     flex-direction: column;
     align-items: center;
@@ -126,32 +140,50 @@
 
     label {
       width: 100%;
+
       select {
         width: 100%;
       }
     }
   }
+
+  .product-list {
+    gap: 1.5rem; // menos espacio en tablet
+  }
 }
 
+/* === Mobile: forzar siempre 2 columnas === */
 @media (max-width: 480px) {
+  .products-page {
+    padding: 0.5rem;
+  }
+
+  .product-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
   .product-card {
-    padding: 1rem;
+    padding: 0.8rem;
 
     img {
-      height: 160px;
+      height: 140px;
+      margin-bottom: 0.5rem;
     }
 
     h3 {
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
 
     .price {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
     }
 
     button {
       width: 100%;
-      padding: 0.6rem;
+      padding: 0.45rem;
+      font-size: 0.8rem;
+      border-radius: 5px;
     }
   }
 }

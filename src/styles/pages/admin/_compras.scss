@@ -25,12 +25,10 @@
   }
   table {
     width: 100%;
-    border-collapse: collapse;
     font-size: 0.95rem;
     background-color: colors.$white;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
-    overflow: hidden;
 
     th {
       background-color: colors.$grey;
