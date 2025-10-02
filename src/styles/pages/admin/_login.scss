@@ -1,0 +1,107 @@
+@use "../../base/colors" as colors;
+
+/* Wrapper para centrar el login */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; // ocupa toda la altura
+  padding: 1rem;
+  background: linear-gradient(135deg, colors.$dark-grey 0%, colors.$grey 100%);
+}
+
+/* Login */
+.login-form {
+  width: 100%;
+  max-width: 420px;
+  padding: 2.5rem 2rem;
+  background: colors.$white; // contraste con el fondo
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  color: colors.$tertiary;
+  text-align: center;
+  animation: fadeInUp 0.8s ease;
+
+  h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: colors.$primary;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    border: 1.5px solid colors.$dark-grey;
+    border-radius: 6px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: colors.$green;
+      box-shadow: 0 0 6px rgba(92, 184, 92, 0.4);
+      background-color: #fefefe;
+    }
+
+    &::placeholder {
+      color: colors.$tertiary
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: colors.$white;
+    background: colors.$green;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.15s ease;
+
+    &:hover {
+      background-color: colors.$green;
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      background: colors.$dark-grey;
+      cursor: not-allowed;
+    }
+  }
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-form {
+    padding: 2rem 1.2rem;
+
+    h2 {
+      font-size: 1.4rem;
+    }
+
+    input,
+    button {
+      font-size: 0.95rem;
+    }
+  }
+}

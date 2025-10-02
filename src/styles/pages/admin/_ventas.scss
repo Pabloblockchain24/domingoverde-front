@@ -294,67 +294,6 @@ table {
   }
 }
 
-/* Login */
-.login-form {
-  max-width: 420px;
-  min-width: 320px;
-  margin: 4rem auto;
-  padding: 2rem 2.5rem;
-  background-color: colors.$white;
-  border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  color: colors.$tertiary;
-  text-align: center;
-
-  h2 {
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: colors.$primary;
-  }
-
-  input {
-    width: 100%;
-    padding: 0.6rem 1rem;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    border: 1.5px solid colors.$dark-grey;
-    border-radius: 6px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-
-    &:focus {
-      outline: none;
-      border-color: colors.$green;
-      box-shadow: 0 0 6px rgba(92, 184, 92, 0.4);
-      background-color: #fefefe;
-    }
-
-    &::placeholder {
-      color: colors.$tertiary;
-    }
-  }
-
-  button {
-    width: 100%;
-    padding: 0.65rem 0;
-    font-size: 1rem;
-    font-weight: 600;
-    color: colors.$white;
-    background-color: colors.$green;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-      background-color: colors.$ligth-green;
-    }
-
-    &:active {
-      background-color: colors.$green;
-    }
-  }
-}
 
 /* ===== Responsivo ===== */
 @media (max-width: 1024px) {
@@ -395,9 +334,6 @@ table {
 }
 
 @media (max-width: 480px) {
-  .login-form {
-    padding: 1.5rem 1rem;
-  }
 
   .ventas {
     h2 {

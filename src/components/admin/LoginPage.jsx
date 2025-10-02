@@ -11,25 +11,26 @@ export default function LoginPage() {
     await login({ email, password });
   };
 
-
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
-      <h2>Iniciar sesión</h2>
-      <input
-        type="text"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit" disabled={loading}>
-        {loading ? "Entrando..." : "Entrar"}
-      </button>
-    </form>
+    <div className="login-wrapper">
+      <form className="login-form" onSubmit={handleSubmit}>
+        <h2>Iniciar sesión</h2>
+        <input
+          type="text"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit" disabled={loading}>
+          {loading ? "Entrando..." : "Entrar"}
+        </button>
+      </form>
+    </div>
   );
 }
