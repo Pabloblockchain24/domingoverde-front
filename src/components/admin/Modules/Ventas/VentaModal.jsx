@@ -16,6 +16,7 @@ export default function VentaModal({ onClose, ventaAEditar, onGuardar }) {
     total: 0,
     metodoPago: "efectivo",
     horaEntrega: "",
+    fechaVenta: ""
   });
 
   // Si se recibe una venta para editar, se llena el formulario con sus datos
@@ -208,6 +209,18 @@ export default function VentaModal({ onClose, ventaAEditar, onGuardar }) {
               required
             />
           </label>
+
+          <label>
+            Fecha Venta:
+            <input
+              type="date"
+              name="fechaVenta"
+              value={formData.fechaVenta}
+              onChange={handleChange}
+              required
+            />
+          </label>
+
 
           <div className="modal-actions">
             <button type="submit" className="btn-primary">

@@ -17,10 +17,9 @@ export default function Ventas() {
   const [selectedVenta, setSelectedVenta] = useState(null);
 
   const [estadoFilter, setEstadoFilter] = useState("");
-  const [fechaPedidoDesde, setFechaPedidoDesde] = useState("");
-  const [fechaPedidoHasta, setFechaPedidoHasta] = useState("");
-  const [fechaEntregaDesde, setFechaEntregaDesde] = useState("");
-  const [fechaEntregaHasta, setFechaEntregaHasta] = useState("");
+  const [fechaVentaDesde, setFechaVentaDesde] = useState("");
+  const [fechaVentaHasta, setFechaVentaHasta] = useState("");
+
 
   const [showModal, setShowModal] = useState(false);
 
@@ -29,34 +28,20 @@ export default function Ventas() {
     let filtered = [...orders];
     if (estadoFilter)
       filtered = filtered.filter((o) => o.estadoEntrega === estadoFilter);
-    if (fechaPedidoDesde)
+    if (fechaVentaDesde)
       filtered = filtered.filter(
-        (o) => new Date(o.createdAt) >= new Date(fechaPedidoDesde)
+        (o) => new Date(o.fechaVenta) >= new Date(fechaVentaDesde)
       );
-    if (fechaPedidoHasta)
+    if (fechaVentaHasta)
       filtered = filtered.filter(
-        (o) => new Date(o.createdAt) <= new Date(fechaPedidoHasta)
+        (o) => new Date(o.fechaVenta) <= new Date(fechaVentaHasta)
       );
-    if (fechaEntregaDesde)
-      filtered = filtered.filter((o) => {
-        const fechaEntrega = new Date(o.createdAt);
-        fechaEntrega.setDate(fechaEntrega.getDate() + 1);
-        return fechaEntrega >= new Date(fechaEntregaDesde);
-      });
-    if (fechaEntregaHasta)
-      filtered = filtered.filter((o) => {
-        const fechaEntrega = new Date(o.createdAt);
-        fechaEntrega.setDate(fechaEntrega.getDate() + 1);
-        return fechaEntrega <= new Date(fechaEntregaHasta);
-      });
 
     setFilteredVentas(filtered);
   }, [
     estadoFilter,
-    fechaPedidoDesde,
-    fechaPedidoHasta,
-    fechaEntregaDesde,
-    fechaEntregaHasta,
+    fechaVentaDesde,
+    fechaVentaHasta,
     orders,
   ]);
 
@@ -138,35 +123,19 @@ export default function Ventas() {
               </select>
             </label>
             <label>
-              Fecha Pedido Desde:
+              Fecha Venta Desde:
               <input
                 type="date"
-                value={fechaPedidoDesde}
-                onChange={(e) => setFechaPedidoDesde(e.target.value)}
+                value={fechaVentaDesde}
+                onChange={(e) => setFechaVentaDesde(e.target.value)}
               />
             </label>
             <label>
-              Fecha Pedido Hasta:
+              Fecha Venta Hasta:
               <input
                 type="date"
-                value={fechaPedidoHasta}
-                onChange={(e) => setFechaPedidoHasta(e.target.value)}
-              />
-            </label>
-            <label>
-              Fecha Entrega Desde:
-              <input
-                type="date"
-                value={fechaEntregaDesde}
-                onChange={(e) => setFechaEntregaDesde(e.target.value)}
-              />
-            </label>
-            <label>
-              Fecha Entrega Hasta:
-              <input
-                type="date"
-                value={fechaEntregaHasta}
-                onChange={(e) => setFechaEntregaHasta(e.target.value)}
+                value={fechaVentaHasta}
+                onChange={(e) => setFechaVentaHasta(e.target.value)}
               />
             </label>
           </div>

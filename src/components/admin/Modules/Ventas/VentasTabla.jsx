@@ -10,17 +10,22 @@ export default function VentasTabla({ventas, onEditModal, onDeleteVenta, onActua
           <th>Productos</th>
           <th>Total</th>
           <th>Pago</th>
-          <th>Estado entrega:</th>
-          <th>Estado pago:</th>
-          <th>Fecha Pedido</th>
-          <th>Fecha Entrega</th>
+          <th>Estado entrega</th>
+          <th>Estado pago</th>
+          <th>Fecha Venta</th>
           <th>Hora Entrega</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         {ventas.map((venta, idx) => {
-          const fechaPedido = new Date(venta.createdAt);
+          const fechaVenta = new Date(venta.fechaVenta);
+          const meses = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+
+          const dia = String(fechaVenta.getUTCDate()).padStart(2, "0");
+          const mes = meses[fechaVenta.getUTCMonth()];
+
+          const fechaVentaFormateada = `${dia}-${mes}`;
           const fechaEntrega = new Date(venta.createdAt);
           fechaEntrega.setDate(fechaEntrega.getDate() + 1);
 
@@ -68,8 +73,7 @@ export default function VentasTabla({ventas, onEditModal, onDeleteVenta, onActua
                   <option value="pagado">Pagado</option>
                 </select>
               </td>
-              <td>{fechaPedido.toLocaleString()}</td>
-              <td>{fechaEntrega.toLocaleDateString()}</td>
+              <td>{fechaVentaFormateada.toLocaleString()}</td>
               <td>{venta.horaEntrega}</td>
               <td className="button-actions">
                 <button onClick={() => onEditModal(venta)}>✏️</button>
