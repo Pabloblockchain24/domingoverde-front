@@ -50,7 +50,7 @@ function calcularVentasMes(ventas) {
 export default function Metricas() {
 
   const { orders, getOrders, loading: loadingOrders } = useOrders();
-  const { goals, getGoals, updateGoal, loading: loadingGoals } = useGoals();
+  const { goals, getGoals, updateGoals, loading: loadingGoals } = useGoals();
   const [showModal, setShowModal] = useState(false);
   const hoy = new Date();
 
@@ -88,10 +88,7 @@ export default function Metricas() {
     ];
 
     try {
-      for (const meta of nuevasMetas) {
-        await updateGoal(meta.name, meta.value);
-      }
-      await getGoals();
+      await updateGoals(nuevasMetas)
     } catch (err) {
       console.error("Error al guardar metas:", err);
     }

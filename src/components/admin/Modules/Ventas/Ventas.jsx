@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useOrders } from "../../../../context/OrdersContext";
 import Loader from "../../../loader";
+import Swal from "sweetalert2"; 
 
 import VentaModal from "./VentaModal";
 import VentasTabla from "./VentasTabla";
@@ -49,17 +50,27 @@ export default function Ventas() {
   const handleGuardarVenta = async () => {
     await getOrders(); // refrescamos desde el backend
     setShowModal(false);
+    Swal.fire("¡Guardado!", "La venta se guardó correctamente.", "success");
   };
 
   // Eliminar venta
   const handleEliminarVenta = async (ventaId) => {
-    if (!window.confirm("¿Seguro que deseas eliminar esta orden?")) return;
+    const result = await Swal.fire({
+      title: "¿Seguro?",
+      text: "No podrás revertir esta acción",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    });
 
+    if (!result.isConfirmed) return;
     try {
       await deleteOrder(ventaId);
+      Swal.fire("Eliminado", "La venta fue eliminada.", "success");
     } catch (error) {
       console.error(error);
-      alert("Error al eliminar la orden");
+      Swal.fire("Error", "Ocurrió un error al eliminar la venta", "error");
     }
   };
 
@@ -67,18 +78,20 @@ export default function Ventas() {
   const actualizarEstadoEntrega = async (ventaId, nuevoEstado) => {
     try {
       await updateOrderEntrega(ventaId, nuevoEstado);
+      Swal.fire("Actualizado", "El estado de entrega fue actualizado.", "success");
     } catch (error) {
       console.error(error);
-      alert("Error al actualizar el estado de entrega");
+      Swal.fire("Error", "No se pudo actualizar el estado de entrega", "error");
     }
   };
 
     const actualizarEstadoPago = async (ventaId, nuevoEstado) => {
       try {
         await updateOrderPago(ventaId, nuevoEstado);
+        Swal.fire("Actualizado", "El estado de pago fue actualizado.", "success");
       } catch (error) {
         console.error(error);
-        alert("Error al actualizar el estado de pago");
+        Swal.fire("Error", "No se pudo actualizar el estado de pago", "error");
       }
     };
 

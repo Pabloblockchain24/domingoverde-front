@@ -2,7 +2,7 @@ import { useCartStore } from "../../store/cartStore.js"
 import { toast } from "react-toastify";
 
 
-export default function ProductItemTienda({ _id, title, price, image }) {
+export default function ProductItemTienda({ _id, title, price, image, inventoryItem, inventoryQuantity }) {
   const addToCart = useCartStore((state) => state.addToCart);
 
   const handleAdd = () => {
@@ -12,6 +12,8 @@ export default function ProductItemTienda({ _id, title, price, image }) {
       price,
       image,
       quantity: 1,
+      inventoryItem,
+      inventoryQuantity
     });
     toast.success(`✅ "${title}" se agregó al carrito`);
   };

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useOrders } from "../../../../context/OrdersContext";
+import Swal from "sweetalert2";
+
 
 
 export default function VentaModal({ onClose, ventaAEditar, onGuardar }) {
@@ -82,13 +84,15 @@ export default function VentaModal({ onClose, ventaAEditar, onGuardar }) {
       let data;
       if (ventaAEditar) {
         data = await editOrder(ventaAEditar._id, payload);
+         Swal.fire("¡Guardado!", "Los cambios se guardaron correctamente.", "success");
       } else {
         data = await createOrder(payload);
+        Swal.fire("¡Creado!", "La venta se creó exitosamente.", "success");
       }
       onGuardar(data);
     } catch (error) {
       console.error(error);
-      alert("Hubo un problema al guardar la venta.");
+      Swal.fire("Error", "Hubo un problema al guardar la venta.", "error");
     }
   };
 

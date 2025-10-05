@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { usePurchases } from "../../../../context/PurchasesContext";
+import Swal from "sweetalert2";
 
 export default function CompraModal({ onClose, compraAEditar, onGuardar }) {
   const { createPurchase, updatePurchase } = usePurchases();
@@ -10,6 +11,7 @@ export default function CompraModal({ onClose, compraAEditar, onGuardar }) {
     productos: [{ nombre: "", precio: 0, cantidad: 1 }],
     total: 0,
     metodoPago: "efectivo",
+    fechaCompra: "",
   });
 
   // Si se recibe una compra para editar, se llena el formulario con sus datos
@@ -52,8 +54,7 @@ export default function CompraModal({ onClose, compraAEditar, onGuardar }) {
   // Calcular total de la compra
   const calcularTotal = (productos) => {
     const total = productos.reduce(
-      (acc, p) =>
-        acc + (Number(p.precio) || 0) * (Number(p.cantidad) || 1),
+      (acc, p) => acc + (Number(p.precio) || 0) * (Number(p.cantidad) || 1),
       0
     );
     setFormData((prev) => ({ ...prev, total }));
@@ -75,13 +76,30 @@ export default function CompraModal({ onClose, compraAEditar, onGuardar }) {
     try {
       if (compraAEditar) {
         await updatePurchase(compraAEditar._id, payload);
+        Swal.fire({
+          icon: "success",
+          title: "¡Compra actualizada!",
+          text: "La compra se actualizó correctamente.",
+          confirmButtonColor: "#168300ff",
+        });
       } else {
         await createPurchase(payload);
+        Swal.fire({
+          icon: "success",
+          title: "¡Compra creada!",
+          text: "La compra se registró correctamente.",
+          confirmButtonColor: "#168300ff",
+        });
       }
       onGuardar();
     } catch (error) {
       console.error(error);
-      alert("Hubo un problema al guardar la compra.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Hubo un problema al guardar la compra.",
+        confirmButtonColor: "#d33",
+      });
     }
   };
 
@@ -101,7 +119,7 @@ export default function CompraModal({ onClose, compraAEditar, onGuardar }) {
             />
           </label>
 
-           <div className="productos">
+          <div className="productos">
             <h3>Productos</h3>
             {formData.productos.map((producto, index) => (
               <div key={index} className="producto-item">
@@ -159,6 +177,17 @@ export default function CompraModal({ onClose, compraAEditar, onGuardar }) {
               <option value="transferencia">Transferencia</option>
               <option value="tarjeta">Tarjeta</option>
             </select>
+          </label>
+
+          <label>
+            Fecha compra:
+            <input
+              type="date"
+              name="fechaCompra"
+              value={formData.fechaCompra}
+              onChange={handleChange}
+              required
+            />
           </label>
 
           <div className="modal-actions">

@@ -29,15 +29,12 @@ export const useGoals = () => {
         setLoading(false);
     };
        
-    const updateGoal = async (goalId, data) => {
+    const updateGoals = async (metas) => {
         setLoading(true);
         try {
-            const res = await updateGoalByApi(goalId, data);
-            const updated = res.data;
-            setGoals((prev) =>
-                prev.map((g) => (g._id === goalId ? { ...g, ...updated } : g))
-            );
-            return updated;
+            const res = await updateGoalByApi(metas);
+            setGoals(res.data)
+            return res.data;
         } catch (error) {
             console.error(error);
             throw error;
@@ -49,7 +46,7 @@ export const useGoals = () => {
 
     return (
       <GoalsContext.Provider
-        value={{ goals, loading, getGoals, updateGoal }}
+        value={{ goals, loading, getGoals, updateGoals }}
       >
         {children}
       </GoalsContext.Provider>

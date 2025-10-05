@@ -16,16 +16,12 @@ export default function ComprasTabla({
           <th>Método Pago</th>
           <th>Estado entrega</th>
           <th>Estado pago</th>
-          <th>Fecha Pedido</th>
+          <th>Fecha compra </th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         {compras.map((compra, idx) => {
-          const fechaPedido = new Date(compra.createdAt);
-          const fechaRecepcion = new Date(compra.createdAt);
-          fechaRecepcion.setDate(fechaRecepcion.getDate() + 2); // Ejemplo: recepción estimada en 2 días
-
           return (
             <tr key={compra._id || `local-${idx}`}>
               <td>{compra.nCompra}</td>
@@ -66,7 +62,16 @@ export default function ComprasTabla({
                   <option value="pagado">Pagado</option>
                 </select>
               </td>
-              <td>{fechaPedido.toLocaleString()}</td>
+              <td>
+                {new Date(compra.fechaCompra)
+                  .toLocaleDateString("es-ES", {
+                    day: "2-digit",
+                    month: "short",
+                    timeZone: "UTC", 
+                  })
+                  .replace(" ", "-")
+                  .replace(".", "")}
+              </td>
               <td className="button-actions">
                 <button onClick={() => onEditModal(compra)}>✏️</button>
                 <button onClick={() => onDeleteCompra(compra._id)}>🗑️</button>

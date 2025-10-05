@@ -40,10 +40,11 @@ export default function CheckoutPage() {
       ...form,
       metodoPago: paymentMethod,
       productos: cartItems.map((item) => ({
-        id: item._id || item.id || "",
         nombre: item.title || item.name || "",
         precio: item.price,
         cantidad: item.cantidad || 1,
+        inventoryItem: item.inventoryItem,
+        inventoryQuantity: item.inventoryQuantity
       })),
       total,
     };
@@ -104,12 +105,12 @@ export default function CheckoutPage() {
 
                 <div
                   className={`payment-card ${
-                    paymentMethod === "webpay" ? "active" : ""
+                    paymentMethod === "tarjeta" ? "active" : ""
                   }`}
-                  onClick={() => setPaymentMethod("webpay")}
+                  onClick={() => setPaymentMethod("tarjeta")}
                 >
                   <i className="fas fa-credit-card"></i>
-                  <span>Transbank débito/crédito</span>
+                  <span>Tarjeta débito/crédito</span>
                 </div>
               </div>
             </div>

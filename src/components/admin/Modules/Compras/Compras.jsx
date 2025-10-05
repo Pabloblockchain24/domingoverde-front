@@ -4,12 +4,12 @@ import ComprasTabla from "./ComprasTabla";
 
 import { usePurchases } from "../../../../context/PurchasesContext";
 import Loader from "../../../loader";
-
+import Swal from "sweetalert2";
 
 export default function Compras() {
-
-    // Datos de compras
-  const { purchases, getPurchases, deletePurchase, updatePurchase, loading } = usePurchases();
+  // Datos de compras
+  const { purchases, getPurchases, deletePurchase, updatePurchase, loading } =
+    usePurchases();
   const [filteredCompras, setFilteredCompras] = useState([]);
   const [selectedCompra, setSelectedCompra] = useState(null);
   // Gestiona el modal
@@ -20,9 +20,9 @@ export default function Compras() {
   const [fechaDesde, setFechaDesde] = useState("");
   const [fechaHasta, setFechaHasta] = useState("");
 
-    useEffect(() => {
-      getPurchases();
-    }, []);
+  useEffect(() => {
+    getPurchases();
+  }, []);
 
   // Filtrado dinámico
   useEffect(() => {
@@ -31,41 +31,71 @@ export default function Compras() {
       filtered = filtered.filter((c) => c.estadoEntrega === estadoFilter);
     if (fechaDesde)
       filtered = filtered.filter(
-        (c) => new Date(c.fecha) >= new Date(fechaDesde)
+        (c) => new Date(c.fechaCompra) >= new Date(fechaDesde)
       );
     if (fechaHasta)
       filtered = filtered.filter(
-        (c) => new Date(c.fecha) <= new Date(fechaHasta)
+        (c) => new Date(c.fechaCompra) <= new Date(fechaHasta)
       );
 
     setFilteredCompras(filtered);
   }, [estadoFilter, fechaDesde, fechaHasta, purchases]);
-
 
   const handleGuardarCompra = async () => {
     await getPurchases(); // refrescamos desde el backend
     setShowModal(false);
   };
 
-
   // Eliminar compra
   const handleEliminarCompra = async (compraId) => {
-    if (!window.confirm("¿Seguro que deseas eliminar esta compra?")) return;
+    const result = await Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Esta acción eliminará la compra permanentemente",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#099404ff",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (!result.isConfirmed) return;
     try {
       await deletePurchase(compraId);
+      Swal.fire({
+        icon: "success",
+        title: "Eliminada",
+        text: "La compra fue eliminada correctamente.",
+        cancelButtonColor: "#099404ff",
+      });
     } catch (error) {
       console.error(error);
-      alert("Error al eliminar la compra");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Error al eliminar la compra.",
+        confirmButtonColor: "#d33",
+      });
     }
   };
 
-   // Actualizar estado de entrega
+  // Actualizar estado de entrega
   const actualizarEstadoEntrega = async (compraId, nuevoEstado) => {
     try {
       await updatePurchase(compraId, { estadoEntrega: nuevoEstado });
+      Swal.fire({
+        icon: "success",
+        title: "Estado actualizado",
+        text: "El estado de entrega fue actualizado.",
+        confirmButtonColor: "#099404ff",
+      });
     } catch (error) {
       console.error(error);
-      alert("Error al actualizar el estado de entrega");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Error al actualizar el estado de entrega.",
+      });
     }
   };
 
@@ -73,10 +103,20 @@ export default function Compras() {
   const actualizarEstadoPago = async (compraId, nuevoEstado) => {
     try {
       await updatePurchase(compraId, { estadoPago: nuevoEstado });
+            Swal.fire({
+        icon: "success",
+        title: "Estado actualizado",
+        text: "El estado de pago fue actualizado.",
+        confirmButtonColor: "#099404ff",
+      });
     } catch (error) {
       console.error(error);
-      alert("Error al actualizar el estado de pago");
-    }
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Error al actualizar el estado de pago.",
+      });
+    }    
   };
 
   // Manejo modal nueva compra
@@ -159,4 +199,3 @@ export default function Compras() {
     </>
   );
 }
-
