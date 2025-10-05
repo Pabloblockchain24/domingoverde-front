@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useCartStore } from "../../store/cartStore";
 import { useOrders } from "../../context/OrdersContext";
+import Swal from "sweetalert2";
+
 
 export default function CheckoutPage() {
   const cartItems = useCartStore((state) => state.cart);
@@ -28,11 +30,20 @@ export default function CheckoutPage() {
 
   const handleCheckout = async () => {
     if (Object.values(form).some((val) => val.trim() === "")) {
-      alert("Por favor completa todos los campos de entrega.");
-      return;
+      Swal.fire({
+        icon: "warning",
+        title: "Campos incompletos",
+        text: "Por favor completa todos los campos de entrega.",
+        confirmButtonColor: "#117c0dff",
+      });      return;
     }
     if (!/^\d{9}$/.test(form.celular)) {
-      alert("El número de celular debe tener exactamente 9 dígitos.");
+      Swal.fire({
+        icon: "error",
+        title: "Número inválido",
+        text: "El número de celular debe tener exactamente 9 dígitos.",
+        confirmButtonColor: "#d33",
+      });
       return;
     }
 
@@ -51,12 +62,23 @@ export default function CheckoutPage() {
 
     try {
       await createOrder(payload);
-      alert("¡Compra realizada con éxito! 🎉");
-      clearCart();
-      window.location.href = "/compraconfirmada";
+      Swal.fire({
+        icon: "success",
+        title: "¡Compra realizada con éxito! 🎉",
+        text: "Tu pedido ha sido recibido. Te contactaremos para coordinar la entrega.",
+        confirmButtonColor: "#4CAF50",
+      }).then(() => {
+        clearCart();
+        window.location.href = "/compraconfirmada";
+      });
     } catch (error) {
       console.error("Checkout error:", error);
-      alert("Error al crear la orden.");
+      Swal.fire({
+        icon: "error",
+        title: "Error al crear la orden",
+        text: "Ocurrió un problema al procesar tu compra. Intenta nuevamente.",
+        confirmButtonColor: "#d33",
+      });
     }
   };
 
@@ -181,17 +203,16 @@ export default function CheckoutPage() {
                 onChange={handleInputChange}
                 className="select-input"
               >
-                <option value="">Selecciona una hora</option>
-                {Array.from({ length: 20 }, (_, i) => {
-                  const hour = 9 + Math.floor(i / 2);
-                  const minutes = i % 2 === 0 ? "00" : "30";
-                  const time = `${hour.toString().padStart(2, "0")}:${minutes}`;
-                  return (
-                    <option key={time} value={time}>
-                      {time}
-                    </option>
-                  );
-                })}
+              <option value="">Selecciona una hora</option>
+              {Array.from({ length: 11 }, (_, i) => {
+                const hour = 9 + i; // desde 9 hasta 19
+                const time = `${hour.toString().padStart(2, "0")}:00`;
+                return (
+                  <option key={time} value={time}>
+                    {time}
+                  </option>
+                );
+              })}
               </select>
             </div>
 
