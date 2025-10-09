@@ -1,15 +1,15 @@
 @use "../base/colors" as colors;
 
 .top__bar {
-  height: 2.5rem;
+  height: 2rem;
   background-color: colors.$yellow;
   color: colors.$tertiary;
-  font-size: 1rem; // 16px en desktop
+  font-size: 0.9rem; // 16px en desktop
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 1rem;
+  padding: 0 0.75rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 1080px) {
