@@ -130,7 +130,7 @@ table {
 
     &.fallida,
     &.cancelada {
-      background-color: colors.$ligth-red;
+      background-color: colors.$light-red;
     }
 
     &.recibida,
@@ -275,7 +275,7 @@ table {
         cursor: pointer;
 
         &:hover {
-          background: colors.$ligth-red;
+          background-color: colors.$light-red;
         }
       }
     }
