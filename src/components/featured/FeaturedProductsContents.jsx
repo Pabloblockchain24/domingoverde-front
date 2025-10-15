@@ -20,7 +20,7 @@ export default function FeaturedProductsContent() {
     // Evitar reinicializar el carrusel si ya existe
     if (gliderEl && !gliderEl.classList.contains("glider-initialized")) {
       const glider = new Glider(gliderEl, {
-        slidesToShow: 1,
+        slidesToShow: 2,
         slidesToScroll: 1,
         draggable: true,
         arrows: {
