@@ -37,14 +37,6 @@ export default function FeaturedProductsContent() {
             },
           },
           {
-            // 🔹 Móviles medianos
-            breakpoint: 640,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1,
-            },
-          },
-          {
             // 🔹 Tablets
             breakpoint: 1024,
             settings: {
