@@ -1,0 +1,13 @@
+---
+const phoneNumber = "56988534103";
+const message = "Hola, ¿estan atendiendo?";
+const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+---
+
+<a href={whatsappUrl}
+   class="whatsapp-float"
+   target="_blank"
+   aria-label="Chatea con nosotros por WhatsApp">
+  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" 
+       alt="WhatsApp" />
+</a>

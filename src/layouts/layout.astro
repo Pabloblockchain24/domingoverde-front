@@ -1,6 +1,21 @@
 ---
 import "../styles.css"
 import ToastProvider from "../components/ToastProvider"
+import WhatsappButton from "../components/whatsappButton.astro"
+
+const pathname = Astro.url.pathname;
+
+
+const excludeRoutes = [
+  "/cart",
+  "/checkout",
+  "/compraConfirmada",
+  "/admin",
+];
+
+const shouldShowWhatsapp = !excludeRoutes.some((route) =>
+  pathname.startsWith(route)
+);
 
 ---
 <html lang="es">
@@ -25,6 +40,7 @@ import ToastProvider from "../components/ToastProvider"
 
   <body>
       <slot />
+      {shouldShowWhatsapp && <WhatsappButton />}
       <ToastProvider client:load />
   </body>
 </html>
