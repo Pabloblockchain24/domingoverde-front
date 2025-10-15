@@ -32,13 +32,13 @@
   background: linear-gradient(145deg, #008f39, #17402a);
   color: #FFFFFF;
   border: none;
-  border-radius: 1rem;
   text-decoration: none;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease;
+  border-radius: 0.25rem;
 }
 .banner__cta .btn-primary:hover {
-  transform: scale(1.05);
+  background: linear-gradient(145deg, #00b25b, #2e7d32); /* verde más brillante */
 }
 @media (max-width: 1024px) {
   .banner {
@@ -526,6 +526,7 @@
 .featured-item .category-badge {
   position: absolute;
   top: 0.75rem;
+  left: 0;
   background: green;
   color: white;
   font-size: 0.75rem;
@@ -533,6 +534,16 @@
   text-transform: uppercase;
   padding: 0.25rem 0.5rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+.featured-item .category-badge.verduras {
+  background: #3DDC84;
+}
+.featured-item .category-badge.huevos {
+  background: #f9d776;
+  color: #111;
+}
+.featured-item .category-badge.frutas {
+  background: rgba(61, 220, 133, 0.3764705882);
 }
 .featured-item .price {
   font-weight: 700;
@@ -571,7 +582,7 @@
   }
 }
 .go-to-shop .shop-button:hover {
-  background: #3DDC84;
+  background: linear-gradient(145deg, #00b25b, #2e7d32); /* verde más brillante */
 }
 
 /* ===========================
@@ -618,7 +629,6 @@
   }
   .featured-item {
     max-width: 50%;
-    padding: 0.5rem;
     border-radius: 8px;
   }
   .featured-item img {
@@ -3130,7 +3140,7 @@ button:hover {
   font-size: 1.5rem;
 }
 .cart-container .cart-icon:hover {
-  color: #FF6F61;
+  color: rgba(255, 255, 255, 0.7); /* blanco más tenue */
 }
 .cart-container .cart-icon .badge {
   position: absolute;
@@ -3154,13 +3164,13 @@ button:hover {
 }
 .main-nav ul li a {
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1rem;
   color: #FFFFFF;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 .main-nav ul li a:hover {
-  color: #FFB703;
+  color: rgba(255, 255, 255, 0.7); /* blanco más tenue */
   transform: scale(1.05);
 }
 @media (max-width: 1080px) {

@@ -27,13 +27,13 @@
       background: linear-gradient(145deg, #008f39, #17402a);
       color: colors.$white;
       border: none;
-      border-radius: 1rem;
       text-decoration: none;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
       transition: all 0.3s ease;
+      border-radius: 0.25rem;
 
       &:hover {
-        transform: scale(1.05);
+        background: linear-gradient(145deg, #00b25b, #2e7d32); /* verde más brillante */
       }
     }
   }
