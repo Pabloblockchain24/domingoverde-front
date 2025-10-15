@@ -16,8 +16,10 @@ export default function FeaturedProductsContent() {
     if (!featured.length) return;
 
     const gliderEl = document.querySelector(".glider");
-    if (gliderEl) {
-      new Glider(gliderEl, {
+
+    // Evitar reinicializar el carrusel si ya existe
+    if (gliderEl && !gliderEl.classList.contains("glider-initialized")) {
+      const glider = new Glider(gliderEl, {
         slidesToShow: 1,
         slidesToScroll: 1,
         draggable: true,
@@ -27,19 +29,44 @@ export default function FeaturedProductsContent() {
         },
         responsive: [
           {
-            breakpoint: 640, // móviles
-            settings: { slidesToShow: 2, slidesToScroll: 1 },
+            // 🔹 Móviles pequeños
+            breakpoint: 420,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+            },
           },
           {
-            breakpoint: 1024, // tablets
-            settings: { slidesToShow: 3, slidesToScroll: 1 },
+            // 🔹 Móviles medianos
+            breakpoint: 640,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+            },
           },
           {
-            breakpoint: 1440, // desktop grande
-            settings: { slidesToShow: 4, slidesToScroll: 1 },
+            // 🔹 Tablets
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            // 🔹 Escritorio grande
+            breakpoint: 1440,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 1,
+            },
           },
         ],
       });
+
+      // Limpiar glider al desmontar
+      return () => {
+        glider.destroy();
+      };
     }
   }, [featured]);
 

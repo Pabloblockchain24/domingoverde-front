@@ -204,3 +204,51 @@
     height: 140px;
   }
 }
+
+/* ===========================
+   AJUSTE PARA MÓVILES ≤420px
+=========================== */
+@media (max-width: 420px) {
+  .glider {
+    gap: 0.5rem !important;
+    height: auto; /* deja que la altura se ajuste naturalmente */
+    padding-inline: 0.25rem;
+  }
+
+  .glider-track {
+    gap: 0.5rem !important;
+  }
+
+  .featured-item {
+    flex: 0 0 calc(50% - 0.5rem); /* 2 columnas */
+    max-width: calc(50% - 0.5rem);
+    padding: 0.5rem;
+    border-radius: 8px;
+
+    img {
+      height: 110px; /* más baja para pantallas pequeñas */
+    }
+
+    h3 {
+      font-size: 0.85rem;
+    }
+
+    .category {
+      font-size: 0.75rem;
+    }
+
+    .price {
+      font-size: 0.9rem;
+    }
+  }
+
+  .custom-arrow {
+    width: 20px;
+    height: 20px;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+}
