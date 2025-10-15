@@ -58,6 +58,7 @@ export default function CheckoutPage() {
         inventoryQuantity: item.inventoryQuantity
       })),
       total,
+      ventaPagina: true,
     };
 
     try {
