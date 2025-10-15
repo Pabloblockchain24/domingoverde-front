@@ -3258,6 +3258,12 @@ button:hover {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   z-index: 1000;
 }
+@media (max-width: 420px) {
+  .whatsapp-float {
+    bottom: 20px;
+    right: 20px;
+  }
+}
 
 .whatsapp-float:hover {
   transform: scale(1.1);
