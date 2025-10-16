@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ProductItem from "./ProductItemTienda.jsx"; 
+import ProductItem from "./ProductItemTienda.jsx";
 import { useProducts } from "../../context/ProductsContext.jsx";
 import Loader from "../loader.jsx";
 
@@ -13,17 +13,16 @@ export default function ProductList() {
 
   const categories = ["Todos", ...new Set(products.map((p) => p.category))];
 
-  const filtered = categoria === "Todos"
-    ? products
-    : products.filter((p) => p.category === categoria);
+  const filtered =
+    categoria === "Todos"
+      ? products
+      : products.filter((p) => p.category === categoria);
 
   return (
     <main className="products-page">
-      <h1>Nuestros Productos</h1>
-
-      <div className="filters">
-        <label>
-          Filtrar por categoría:
+      <div className="header-products-page">
+        <p className="p-path"> Tienda / {categoria} </p>
+        <div className="filter-shop">
           <select
             value={categoria}
             onChange={(e) => setCategoria(e.target.value)}
@@ -34,7 +33,7 @@ export default function ProductList() {
               </option>
             ))}
           </select>
-        </label>
+        </div>
       </div>
 
       {loading ? (
