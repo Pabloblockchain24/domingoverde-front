@@ -42,8 +42,12 @@
       }
     }
 
-
-
+    .result-count {
+      font-size: 0.9rem;
+      color: colors.$dark-grey;
+      margin-top: 0.5rem;
+      margin-left: 0.25rem;
+    }
   }
 
   /* Grid de productos (fluid) */
@@ -57,11 +61,17 @@
 
 /* Tarjetas de productos */
 .product-card {
+  flex: 1;
   position: relative; // importante para ubicar la etiqueta
   background-color: colors.$white;
   border: 1px solid colors.$grey;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   .product-category {
     position: absolute;
@@ -96,6 +106,16 @@
     height: 200px;
     object-fit: cover;
     margin-bottom: 1rem;
+    transition: transform 0.4s ease-in-out; // 🔹 animación suave
+  }
+
+  &:hover img {
+    transform: scale(1.08); // agranda un poco la imagen
+  }
+
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
   }
 
   .product-card-content {
@@ -128,14 +148,12 @@
         align-items: center;
         gap: 2px;
       }
-     .star-half {
+
+      .star-half {
         display: inline-block;
       }
-
     }
   }
-
-
 
   button {
     width: 100%;
@@ -151,7 +169,8 @@
     margin-top: 1rem;
 
     &:hover {
-      background-color: colors.$green;
+      background-color: #8a6403;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
     }
   }
 }

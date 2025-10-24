@@ -1,13 +1,21 @@
 import { useEffect, useState } from "react";
 import { useOrders } from "../../../../context/OrdersContext";
 import Loader from "../../../loader";
-import Swal from "sweetalert2"; 
+import Swal from "sweetalert2";
 
 import VentaModal from "./VentaModal";
 import VentasTabla from "./VentasTabla";
 
 export default function Ventas() {
-  const { orders, getOrders, deleteOrder, updateOrderEntrega, updateOrderPago, loading } = useOrders();
+  const {
+    orders,
+    getOrders,
+    deleteOrder,
+    updateOrderEntrega,
+    updateOrderPago,
+    generateReviewToken,
+    loading,
+  } = useOrders();
 
   useEffect(() => {
     getOrders();
@@ -20,7 +28,6 @@ export default function Ventas() {
   const [estadoFilter, setEstadoFilter] = useState("");
   const [fechaVentaDesde, setFechaVentaDesde] = useState("");
   const [fechaVentaHasta, setFechaVentaHasta] = useState("");
-
 
   const [showModal, setShowModal] = useState(false);
 
@@ -39,12 +46,7 @@ export default function Ventas() {
       );
 
     setFilteredVentas(filtered);
-  }, [
-    estadoFilter,
-    fechaVentaDesde,
-    fechaVentaHasta,
-    orders,
-  ]);
+  }, [estadoFilter, fechaVentaDesde, fechaVentaHasta, orders]);
 
   // guardar venta
   const handleGuardarVenta = async () => {
@@ -74,26 +76,55 @@ export default function Ventas() {
     }
   };
 
+  const handleGenerarReviewToken = async (ventaId) => {
+    try {
+      const data = await generateReviewToken(ventaId);
+
+      Swal.fire({
+        title: "Token de review generado ✅",
+        html: `
+        <p> ${data.reviewLink}</p>
+      `,
+        icon: "success",
+        confirmButtonText: "Copiar link",
+      }).then(() => {
+        // Copiar link al portapapeles
+        navigator.clipboard.writeText(data.reviewLink);
+      });
+    } catch (error) {
+      console.error(error);
+      Swal.fire(
+        "Error",
+        "Ocurrió un error al generar el token de review.",
+        "error"
+      );
+    }
+  };
+
   // Actualizar estado de la orden (entrega o pago)
   const actualizarEstadoEntrega = async (ventaId, nuevoEstado) => {
     try {
       await updateOrderEntrega(ventaId, nuevoEstado);
-      Swal.fire("Actualizado", "El estado de entrega fue actualizado.", "success");
+      Swal.fire(
+        "Actualizado",
+        "El estado de entrega fue actualizado.",
+        "success"
+      );
     } catch (error) {
       console.error(error);
       Swal.fire("Error", "No se pudo actualizar el estado de entrega", "error");
     }
   };
 
-    const actualizarEstadoPago = async (ventaId, nuevoEstado) => {
-      try {
-        await updateOrderPago(ventaId, nuevoEstado);
-        Swal.fire("Actualizado", "El estado de pago fue actualizado.", "success");
-      } catch (error) {
-        console.error(error);
-        Swal.fire("Error", "No se pudo actualizar el estado de pago", "error");
-      }
-    };
+  const actualizarEstadoPago = async (ventaId, nuevoEstado) => {
+    try {
+      await updateOrderPago(ventaId, nuevoEstado);
+      Swal.fire("Actualizado", "El estado de pago fue actualizado.", "success");
+    } catch (error) {
+      console.error(error);
+      Swal.fire("Error", "No se pudo actualizar el estado de pago", "error");
+    }
+  };
 
   // Manejo modal
   const openNewModal = () => {
@@ -120,49 +151,49 @@ export default function Ventas() {
           </button>
         </div>
       </div>
-        <>
-          {/* Filtros */}
-          <div className="filters">
-            <label>
-              Estado entrega:
-              <select
-                value={estadoFilter}
-                onChange={(e) => setEstadoFilter(e.target.value)}
-              >
-                <option value="">Todos</option>
-                <option value="pendiente">pendiente</option>
-                <option value="fallida">fallida</option>
-                <option value="entregado">entregado</option>
-              </select>
-            </label>
-            <label>
-              Fecha Venta Desde:
-              <input
-                type="date"
-                value={fechaVentaDesde}
-                onChange={(e) => setFechaVentaDesde(e.target.value)}
-              />
-            </label>
-            <label>
-              Fecha Venta Hasta:
-              <input
-                type="date"
-                value={fechaVentaHasta}
-                onChange={(e) => setFechaVentaHasta(e.target.value)}
-              />
-            </label>
-          </div>
+      <>
+        {/* Filtros */}
+        <div className="filters">
+          <label>
+            Estado entrega:
+            <select
+              value={estadoFilter}
+              onChange={(e) => setEstadoFilter(e.target.value)}
+            >
+              <option value="">Todos</option>
+              <option value="pendiente">pendiente</option>
+              <option value="fallida">fallida</option>
+              <option value="entregado">entregado</option>
+            </select>
+          </label>
+          <label>
+            Fecha Venta Desde:
+            <input
+              type="date"
+              value={fechaVentaDesde}
+              onChange={(e) => setFechaVentaDesde(e.target.value)}
+            />
+          </label>
+          <label>
+            Fecha Venta Hasta:
+            <input
+              type="date"
+              value={fechaVentaHasta}
+              onChange={(e) => setFechaVentaHasta(e.target.value)}
+            />
+          </label>
+        </div>
 
-          {/* Tabla */}
-          <VentasTabla
-            ventas={filteredVentas}
-            onEditModal={openEditModal}
-            onDeleteVenta={handleEliminarVenta}
-            onActualizarEstadoEntrega={actualizarEstadoEntrega}
-            onActualizarEstadoPago={actualizarEstadoPago}
-          />
-        </>
-      
+        {/* Tabla */}
+        <VentasTabla
+          ventas={filteredVentas}
+          onEditModal={openEditModal}
+          onDeleteVenta={handleEliminarVenta}
+          onActualizarEstadoEntrega={actualizarEstadoEntrega}
+          onActualizarEstadoPago={actualizarEstadoPago}
+          onGenerarReviewToken={handleGenerarReviewToken}
+        />
+      </>
 
       {/* Modal */}
       {showModal && (

@@ -44,9 +44,7 @@ export default function ProductItemTienda({
   const stars = Array.from({ length: totalStars }, (_, i) => {
     if (i < fullStars) {
       // Estrella completamente llena
-      return (
-        <Star key={i} size={16} fill="#FFD700" stroke="#FFD700" />
-      );
+      return <Star key={i} size={16} fill="#FFD700" stroke="#FFD700" />;
     } else if (i === fullStars && hasHalfStar) {
       // Estrella parcialmente rellena
       return (
@@ -89,17 +87,22 @@ export default function ProductItemTienda({
 
   return (
     <div className="product-card">
-      {category && (
-        <span className={`product-category ${categoryClass}`}>{category}</span>
-      )}
-      <img src={image} alt={title} />
-      <div className="product-card-content">
-        <h3>{title}</h3>
-        <p className="price">{formattedPrice}</p>
+      <div>
+        {" "}
+        {category && (
+          <span className={`product-category ${categoryClass}`}>
+            {category}
+          </span>
+        )}
+        <img src={image} alt={title} />
+        <div className="product-card-content">
+          <h3>{title}</h3>
+          <p className="price">{formattedPrice}</p>
 
-        <div className="rating">
-          <div className="stars">{stars}</div>
-          <span className="reviews">({reviews} reviews)</span>
+          <div className="rating">
+            <div className="stars">{stars}</div>
+            <span className="reviews">({reviews} reviews)</span>
+          </div>
         </div>
       </div>
 

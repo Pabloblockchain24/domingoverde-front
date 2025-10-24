@@ -1,0 +1,206 @@
+@use "../../base/colors" as colors;
+
+.review-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem; // margen lateral en mobile
+
+  .review-page {
+    max-width: 480px;
+    min-width: 420px;
+    background: colors.$grey;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    @media (max-width: 480px) {
+      min-width: 100%;
+      max-width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 0;
+      background: colors.$grey;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+
+      @media (max-width: 480px) {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .review-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .photo-group {
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+
+        position: relative;
+        flex-direction: column;
+        align-items: flex-start;
+
+        input[type="file"] {
+          display: none;
+        }
+
+        .photo-label {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.4rem;
+          background-color: #bd8905;
+          color: #fff;
+          font-weight: 600;
+          padding: 0.8rem 1.2rem;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-size: 1rem;
+          width: 100%;
+          text-align: center;
+
+          &:hover {
+            background-color: #7a5203;
+            transform: translateY(-1px);
+          }
+
+          @media (max-width: 480px) {
+            font-size: 0.95rem;
+            padding: 0.9rem;
+          }
+        }
+
+        .photo-preview {
+          margin-top: 0.75rem;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+
+          img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
+            transition: transform 0.3s ease;
+
+            &:hover {
+              transform: scale(1.03);
+            }
+
+            @media (max-width: 480px) {
+              max-width: 100%;
+              border-radius: 6px;
+            }
+          }
+        }
+      }
+
+      .input-group {
+        display: flex;
+        align-items: center;
+        background: colors.$white;
+        border: 1px solid #ddd;
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+
+        &.textarea-group {
+          align-items: flex-start;
+        }
+
+        .icon {
+          color: #bd8905;
+          margin-right: 0.5rem;
+          flex-shrink: 0;
+        }
+
+        input,
+        textarea,
+        select {
+          flex: 1;
+          border: none;
+          outline: none;
+          background: transparent;
+          font-size: 1rem;
+          resize: none;
+
+          &:disabled {
+            color: #2c2c2c;
+            font-weight: 700;
+            cursor: not-allowed;
+          }
+
+          @media (max-width: 480px) {
+            font-size: 0.95rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          padding: 0.6rem 0.8rem;
+        }
+      }
+
+      .stars-group {
+        gap: 0.5rem;
+        background: none;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        @media (max-width: 480px) {
+          align-items: center;
+          gap: 0.75rem;
+
+          .stars {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+          }
+        }
+      }
+
+      .btn-submit {
+        background-color: #bd8905;
+        color: #fff;
+        padding: 1rem;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border-radius: 6px;
+
+        &:hover {
+          background-color: #7a5203;
+        }
+
+        @media (max-width: 480px) {
+          padding: 1rem;
+          font-size: 1rem;
+          border-radius: 8px;
+        }
+      }
+    }
+  }
+}
+
+.review-hecho {
+  color: #22c55e; // verde éxito
+  font-size: 1.2rem;
+}
+
+.review-pendiente {
+  color: #ef4444; // rojo error
+  font-size: 1.2rem;
+}

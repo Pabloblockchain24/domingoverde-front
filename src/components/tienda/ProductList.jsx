@@ -34,6 +34,12 @@ export default function ProductList() {
             ))}
           </select>
         </div>
+                <div className="result-count">
+          <p>
+            {filtered.length} producto{filtered.length !== 1 ? "s" : ""} encontrado
+            {filtered.length !== 1 ? "s" : ""}
+          </p>
+        </div>
       </div>
 
       {loading ? (

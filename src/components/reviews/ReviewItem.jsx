@@ -14,17 +14,17 @@ export default function ReviewItem({ review }) {
 
   return (
     <div className="review-item">
-      {/* Imagen del producto */}
       <div className="review-item__image">
         <img
-          src={
-            photo ||
-            "https://images.pexels.com/photos/566566/pexels-photo-566566.jpeg?auto=compress&cs=tinysrgb&h=400&w=400"
-          }
+          src={photo}
           alt={`Foto del producto reseñado por ${name}`}
+          onError={(e) => {
+            e.target.onerror = null; 
+            e.target.src =
+              "./error_img.jpg";
+          }}
         />
       </div>
-
       <div className="review-item__content">
         {/* Estrellas */}
         <div className="review-item__stars">

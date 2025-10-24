@@ -70,13 +70,14 @@
       margin: 0;
     }
   }
-
 }
 
 table {
   width: 100%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
+  border-collapse: collapse;
+  background-color: colors.$white;
 
   th {
     background-color: colors.$grey;
@@ -114,6 +115,7 @@ table {
     background-color: colors.$grey;
   }
 
+  /* ===== Estados de Entrega y Pago ===== */
   .estado {
     font-weight: 600;
     text-transform: capitalize;
@@ -140,6 +142,52 @@ table {
     }
   }
 
+  /* ===== Token de Review ===== */
+  .token-activo {
+    background-color: colors.$ligth-green;
+    color: colors.$green;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: 1px solid rgba(colors.$green, 0.2);
+  }
+
+  .token-inactivo {
+    background-color: colors.$grey;
+    color: #777;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-token {
+    background-color: #fff8e1;
+    border: 1px solid #f1c40f;
+    border-radius: 6px;
+    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #fde293;
+    }
+
+    &.activo {
+      background-color: #e0f7e9;
+      border: 1px solid #27ae60;
+      color: #1e8449;
+
+      &:hover {
+        background-color: #c8f5d6;
+      }
+    }
+  }
+
+  /* ===== Acciones ===== */
   .button-actions {
     display: flex;
     gap: 0.5rem;
@@ -167,6 +215,7 @@ table {
   }
 }
 
+/* ===== Filtros ===== */
 .filters {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -201,7 +250,7 @@ table {
   }
 }
 
-/* Modal */
+/* ===== Modal ===== */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -282,6 +331,7 @@ table {
   }
 }
 
+/* ===== Animación ===== */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -293,7 +343,6 @@ table {
     transform: scale(1);
   }
 }
-
 
 /* ===== Responsivo ===== */
 @media (max-width: 1024px) {
@@ -315,43 +364,23 @@ table {
     padding: 1rem 1.5rem;
   }
 
-  .filters {
-    flex-direction: column;
-    align-items: stretch;
-
-    label {
-      width: 100%;
-    }
-  }
-
   table {
+    display: block;
+    overflow-x: auto;
     font-size: 0.85rem;
+
     td,
     th {
       padding: 0.5rem 0.75rem;
+      white-space: nowrap;
     }
   }
 }
 
 @media (max-width: 480px) {
-
   .ventas {
     h2 {
       font-size: 1.2rem;
-    }
-
-    .filters {
-      gap: 0.5rem;
-
-      label {
-        font-size: 0.85rem;
-
-        input,
-        select {
-          font-size: 0.9rem;
-          padding: 0.4rem 0.6rem;
-        }
-      }
     }
 
     table {

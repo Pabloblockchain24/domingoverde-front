@@ -4,6 +4,7 @@ import {
   deleteOrderByApi,
   updateOrderByApi,
   createOrderByApi,
+  generateReviewTokenByApi
 } from "../api/orders";
 
 const OrdersContext = createContext();
@@ -95,6 +96,20 @@ export function OrdersProvider({ children }) {
   const updateOrderPago = (orderId, nuevoEstado) =>
     updateOrder(orderId, { estadoPago: nuevoEstado });
 
+  const generateReviewToken = async (orderId) => {
+    setLoading(true);
+    try {
+      const res = await generateReviewTokenByApi(orderId);
+      return res.data;
+    } catch (error) {
+      console.error("Error al generar el token de review:", error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
   return (
     <OrdersContext.Provider
       value={{
@@ -105,6 +120,7 @@ export function OrdersProvider({ children }) {
         deleteOrder,
         updateOrderEntrega,
         updateOrderPago,
+        generateReviewToken,
         loading,
       }}
     >
