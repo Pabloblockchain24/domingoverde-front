@@ -3,10 +3,10 @@ import axios from "axios";
 
 const instance  = axios.create({
     /* production mode*/
-    // baseURL: "https://domingoverde-back.vercel.app/api",
+    baseURL: "https://domingoverde-back.vercel.app/api",
 
     /* development mode*/
-    baseURL: "http://localhost:4000/api",
+    //baseURL: "http://localhost:4000/api",
     withCredentials: true
 })
 
