@@ -2791,71 +2791,38 @@ button:hover {
   border: none !important;
   padding: 0 !important;
   box-shadow: none !important;
-  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-}
-.review-container .review-page .review-form .photo-group input[type=file] {
-  display: none;
-}
-.review-container .review-page .review-form .photo-group .photo-label {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  background-color: #bd8905;
-  color: #fff;
-  font-weight: 600;
-  padding: 0.8rem 1.2rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 1rem;
   width: 100%;
-  text-align: center;
+  gap: 10px;
 }
-.review-container .review-page .review-form .photo-group .photo-label:hover {
-  background-color: #7a5203;
-  transform: translateY(-1px);
+.review-container .review-page .review-form .photo-group .photo-buttons {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+.review-container .review-page .review-form .photo-group .photo-buttons .photo-btn {
+  flex: 1;
+  background-color: #f5b800;
+  color: #fff;
+  border: none;
+  padding: 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, transform 0.1s ease;
+}
+.review-container .review-page .review-form .photo-group .photo-buttons .photo-btn:hover {
+  background-color: #e0a700;
+  transform: scale(1.02);
+}
+.review-container .review-page .review-form .photo-group .photo-buttons .photo-btn:active {
+  transform: scale(0.98);
 }
 @media (max-width: 480px) {
-  .review-container .review-page .review-form .photo-group .photo-label {
+  .review-container .review-page .review-form .photo-group {
     font-size: 0.95rem;
     padding: 0.9rem;
-  }
-}
-.review-container .review-page .review-form .photo-group .photo-preview {
-  margin-top: 0.75rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-.review-container .review-page .review-form .photo-group .photo-preview img {
-  margin-top: 10px;
-  width: 100%;
-  max-width: 250px;
-  border-radius: 10px;
-  object-fit: cover;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.review-container .review-page .review-form .photo-group .photo-preview img:hover {
-  transform: scale(1.03);
-}
-@media (max-width: 480px) {
-  .review-container .review-page .review-form .photo-group .photo-preview img {
-    max-width: 100%;
-    border-radius: 6px;
   }
 }
 .review-container .review-page .review-form .input-group {
@@ -2968,6 +2935,26 @@ button:hover {
   background-color: #f5f5f5;
 }
 
+.photo-preview {
+  margin-top: 10px;
+}
+.photo-preview img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 600px) {
+  .photo-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .photo-buttons .photo-btn {
+    font-size: 15px;
+    padding: 10px 0;
+  }
+}
 .recipe-list {
   padding: 2rem;
 }

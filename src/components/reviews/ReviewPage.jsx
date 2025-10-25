@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef  } from "react";
+import { useState, useEffect, useRef } from "react";
 import Swal from "sweetalert2";
 import { User, Package, MessageSquare, Star, Image } from "lucide-react";
 import { useReviews } from "../../context/ReviewsContext";
@@ -7,8 +7,6 @@ export default function ReviewPage() {
   const { getReviewByToken, createReview, loading } = useReviews();
   const cameraInputRef = useRef(null);
   const galleryInputRef = useRef(null);
-  const [showMenu, setShowMenu] = useState(false);
-
 
   const [review, setReview] = useState({
     name: "",
@@ -176,62 +174,44 @@ export default function ReviewPage() {
 
           {/* Subir o tomar foto */}
           <div className="input-group photo-group">
-            <label className="photo-label">📸 Subir imagen</label>
-
-            <div className="photo-actions">
+            <div className="photo-buttons">
               <button
                 type="button"
-                className="upload-button"
-                onClick={() => setShowMenu(!showMenu)}
+                className="photo-btn"
+                onClick={() => cameraInputRef.current.click()}
               >
-                Elegir opción
+                📷 Tomar foto
               </button>
-
-              {showMenu && (
-                <div className="upload-menu">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      cameraInputRef.current.click();
-                      setShowMenu(false);
-                    }}
-                  >
-                    📷 Tomar foto
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      galleryInputRef.current.click();
-                      setShowMenu(false);
-                    }}
-                  >
-                    🖼 Elegir desde galería
-                  </button>
-                </div>
-              )}
-
-              {/* Inputs ocultos */}
-              <input
-                ref={cameraInputRef}
-                type="file"
-                accept="image/*"
-                capture="environment"
-                style={{ display: "none" }}
-                onChange={(e) =>
-                  setReview({ ...review, photo: e.target.files[0] })
-                }
-              />
-
-              <input
-                ref={galleryInputRef}
-                type="file"
-                accept="image/*"
-                style={{ display: "none" }}
-                onChange={(e) =>
-                  setReview({ ...review, photo: e.target.files[0] })
-                }
-              />
+              <button
+                type="button"
+                className="photo-btn"
+                onClick={() => galleryInputRef.current.click()}
+              >
+                🖼 Elegir desde galería
+              </button>
             </div>
+
+            {/* Inputs ocultos */}
+            <input
+              ref={cameraInputRef}
+              type="file"
+              accept="image/*"
+              capture="environment"
+              style={{ display: "none" }}
+              onChange={(e) =>
+                setReview({ ...review, photo: e.target.files[0] })
+              }
+            />
+
+            <input
+              ref={galleryInputRef}
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={(e) =>
+                setReview({ ...review, photo: e.target.files[0] })
+              }
+            />
 
             {/* Vista previa */}
             {review.photo && review.photo instanceof File && (
