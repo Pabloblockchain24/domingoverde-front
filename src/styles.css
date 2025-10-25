@@ -2748,8 +2748,9 @@ button:hover {
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   padding: 1rem;
+  margin-top: 20vh;
 }
 .review-container .review-page {
   max-width: 480px;

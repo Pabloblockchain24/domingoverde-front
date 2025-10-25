@@ -4,8 +4,9 @@
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   padding: 1rem; // margen lateral en mobile
+  margin-top: 20vh;
 
   .review-page {
     max-width: 480px;
