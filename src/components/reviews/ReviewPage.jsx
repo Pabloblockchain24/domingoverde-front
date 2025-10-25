@@ -171,22 +171,18 @@ export default function ReviewPage() {
           </div>
 
           <div className="input-group photo-group">
-
             <label htmlFor="photo-upload" className="photo-label">
               📸 Tomar foto o subir imagen
             </label>
-
             <input
               id="photo-upload"
               type="file"
               name="photo"
               accept="image/*"
-              capture="environment"
               onChange={(e) =>
                 setReview({ ...review, photo: e.target.files[0] })
               }
             />
-
             {/* Vista previa de la imagen */}
             {review.photo && review.photo instanceof File && (
               <div className="photo-preview">
