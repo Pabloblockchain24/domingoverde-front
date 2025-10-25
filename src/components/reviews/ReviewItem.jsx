@@ -16,12 +16,11 @@ export default function ReviewItem({ review }) {
     <div className="review-item">
       <div className="review-item__image">
         <img
-          src={photo}
+          src={photo ? photo : "/error_img.jpg"}
           alt={`Foto del producto reseñado por ${name}`}
           onError={(e) => {
-            e.target.onerror = null; 
-            e.target.src =
-              "./error_img.jpg";
+            e.target.onerror = null; // evita bucle infinito
+            e.target.src = "/error_img.jpg";
           }}
         />
       </div>

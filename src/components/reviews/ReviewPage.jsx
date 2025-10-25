@@ -174,6 +174,7 @@ export default function ReviewPage() {
 
           {/* Subir o tomar foto */}
           <div className="input-group photo-group">
+            <label className="photo-label"> Toma o sube una foto (opcional):</label>
             <div className="photo-buttons">
               <button
                 type="button"
@@ -187,7 +188,7 @@ export default function ReviewPage() {
                 className="photo-btn"
                 onClick={() => galleryInputRef.current.click()}
               >
-                🖼 Elegir desde galería
+                🖼 Ir a galería
               </button>
             </div>
 
@@ -226,7 +227,7 @@ export default function ReviewPage() {
 
           {/* Calificación */}
           <div className="input-group stars-group">
-            <p>Calificación:</p>
+            <p className="stars-label">Calificación:</p>
             <div className="stars">
               {[1, 2, 3, 4, 5].map((n) => (
                 <Star
