@@ -8,6 +8,9 @@ export default function ReviewPage() {
   const cameraInputRef = useRef(null);
   const galleryInputRef = useRef(null);
 
+  const MAX_FILE_SIZE_MB = 2; // Máximo permitido en Megabytes
+  const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024; // 2 MB en bytes
+
   const [review, setReview] = useState({
     name: "",
     rating: 0,
@@ -59,6 +62,34 @@ export default function ReviewPage() {
     setReview({ ...review, rating: value });
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) {
+      setReview({ ...review, photo: "" }); // Limpiar si no se seleccionó nada
+      return;
+    }
+
+    // 🚨 Validación principal: verificar el tamaño
+    if (file.size > MAX_FILE_SIZE_BYTES) {
+      Swal.fire({
+        icon: "error",
+        title: "Archivo demasiado grande 🖼️",
+        text: `El tamaño máximo permitido es ${MAX_FILE_SIZE_MB} MB. Tu archivo es de ${(
+          file.size /
+          1024 /
+          1024
+        ).toFixed(2)} MB.`,
+      });
+      // Limpiar el valor del input para que el usuario pueda volver a intentar subir
+      e.target.value = null;
+      return;
+    }
+
+    // Si la validación es exitosa, actualizar el estado
+    setReview({ ...review, photo: file });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -69,6 +100,14 @@ export default function ReviewPage() {
         text: "Por favor, selecciona una calificación y escribe un comentario.",
       });
       return;
+    }
+    if (review.photo instanceof File && review.photo.size > MAX_FILE_SIZE_BYTES) {
+        Swal.fire({
+            icon: "error",
+            title: "Error de validación",
+            text: `La foto seleccionada excede el límite de ${MAX_FILE_SIZE_MB} MB.`,
+        });
+        return;
     }
 
     try {
@@ -174,7 +213,10 @@ export default function ReviewPage() {
 
           {/* Subir o tomar foto */}
           <div className="input-group photo-group">
-            <label className="photo-label"> Toma o sube una foto (opcional):</label>
+            <label className="photo-label">
+              {" "}
+              Toma o sube una foto (opcional):
+            </label>
             <div className="photo-buttons">
               <button
                 type="button"
@@ -199,9 +241,7 @@ export default function ReviewPage() {
               accept="image/*"
               capture="environment"
               style={{ display: "none" }}
-              onChange={(e) =>
-                setReview({ ...review, photo: e.target.files[0] })
-              }
+              onChange={handleFileChange}
             />
 
             <input
@@ -209,9 +249,7 @@ export default function ReviewPage() {
               type="file"
               accept="image/*"
               style={{ display: "none" }}
-              onChange={(e) =>
-                setReview({ ...review, photo: e.target.files[0] })
-              }
+              onChange={handleFileChange} 
             />
 
             {/* Vista previa */}
