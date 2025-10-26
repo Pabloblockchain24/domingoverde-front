@@ -224,19 +224,75 @@
   align-items: center;
   gap: 1.25rem;
   margin-block: 2rem;
+  padding-inline: 1rem;
 }
 .review-home-container h2 {
   font-size: 1.75rem;
+  color: #333;
 }
 @media (max-width: 768px) {
   .review-home-container h2 {
     font-size: 1.25rem;
   }
 }
+.review-home-container .review-subtitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.review-home-container .star-title {
+  width: 20px;
+  height: 20px;
+  color: #fbbf24;
+  fill: #fbbf24;
+}
+.review-home-container .review-filter-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.review-home-container .review-filter-bar .filter-dropdown {
+  appearance: none;
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px;
+  transition: border-color 0.2s ease;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23333333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.012 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.658L8.753 11.14a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 14px;
+}
+.review-home-container .review-filter-bar .filter-dropdown:focus {
+  outline: none;
+  border-color: #1d5536;
+  box-shadow: 0 0 0 2px rgba(29, 85, 54, 0.2);
+}
+.review-home-container .review-filter-bar .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
 @media (max-width: 768px) {
   .review-home-container {
     margin-block: 1.25rem;
     gap: 1rem;
+    padding-inline: 0.75rem;
   }
 }
 
@@ -251,19 +307,25 @@
   scrollbar-width: thin;
   scrollbar-color: #888 #f1f1f1;
 }
-.review-home-list .review-home-list::-webkit-scrollbar {
+.review-home-list::-webkit-scrollbar {
   width: 8px;
 }
-.review-home-list .review-home-list::-webkit-scrollbar-track {
+.review-home-list::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 10px;
 }
-.review-home-list .review-home-list::-webkit-scrollbar-thumb {
-  background: #888; /* Color del "pulgar" (el que mueves) */
-  border-radius: 10px; /* Esquinas redondeadas */
+.review-home-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
 }
-.review-home-list .review-home-list::-webkit-scrollbar-thumb:hover {
-  background: #555;
+.review-home-list::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+.review-home-list .no-reviews-message {
+  text-align: center;
+  color: #666;
+  padding: 20px;
+  font-style: italic;
 }
 @media (max-width: 768px) {
   .review-home-list {
@@ -298,19 +360,8 @@
 @media (max-width: 420px) {
   .review-item {
     flex: 1 1 calc(50% - 0.75rem);
-    /* dos columnas */
     max-width: calc(50% - 0.75rem);
     font-size: 0.7rem;
-  }
-  .review-item .review-item__image {
-    height: 110px;
-    /* imagen más baja */
-  }
-  .review-item .review-item__comment {
-    font-size: 0.655rem;
-  }
-  .review-item .review-item__footer {
-    font-size: 0.65rem;
   }
 }
 .review-item:hover {
@@ -324,6 +375,11 @@
 @media (max-width: 768px) {
   .review-item__image {
     height: 170px;
+  }
+}
+@media (max-width: 420px) {
+  .review-item__image {
+    height: 110px;
   }
 }
 .review-item__image img {
@@ -384,6 +440,11 @@
     font-size: 0.8rem;
   }
 }
+@media (max-width: 420px) {
+  .review-item__comment {
+    font-size: 0.655rem;
+  }
+}
 .review-item__footer {
   display: flex;
   justify-content: space-between;
@@ -396,28 +457,17 @@
     font-size: 0.8rem;
   }
 }
+@media (max-width: 420px) {
+  .review-item__footer {
+    font-size: 0.65rem;
+  }
+}
 .review-item__footer .name {
   font-weight: 600;
   color: #111827;
 }
 .review-item__footer .date {
   font-style: italic;
-}
-
-.star-title {
-  width: 20px;
-  height: 20px;
-  color: #fbbf24;
-  fill: #fbbf24;
-}
-
-.review-subtitle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-size: 1.1rem;
-  font-weight: 500;
 }
 
 /* ===========================
