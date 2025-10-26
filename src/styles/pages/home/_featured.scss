@@ -1,7 +1,17 @@
+// review-list.scss
 @use "../../base/colors" as colors;
 
+// ➡️ Variables Actualizadas
+$primary-color: #1d5536; // Tu color verde principal
+$text-color: #333; // Color de texto general
+$border-color: #ddd;
+$background-light: #f9f9f9;
+$scroll-thumb-color: #888;
+$scroll-track-color: #f1f1f1;
+$star-active-color: #fbbf24; // Color de la estrella activa
+
 /* ===========================
-   CONTENEDOR PRINCIPAL
+    CONTENEDOR PRINCIPAL
 =========================== */
 .featured_container {
   padding: 2rem;
@@ -30,23 +40,22 @@
 }
 
 /* ===========================
-   GLIDER / CARRUSEL
+    GLIDER / CARRUSEL
 =========================== */
 .glider-container {
   position: relative;
-  padding: 1rem;
+  padding-inline: 1rem;
+  // ⭐ AJUSTE CLAVE: Aumento del padding inferior
+  padding-bottom: 3rem;
 
   .glider {
     display: flex;
     gap: 1rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding: 0;
-    height: 275px;
-
-    @media (max-width: 420px) {
-      height: 225px;
-    }
+    padding-bottom: 1rem;
+    // ⭐ AJUSTE CLAVE: Margen extra debajo del contenido del carrusel
+    margin-bottom: 0; // Ya no necesitamos este margen si usamos padding-bottom
 
     .glider-track {
       display: flex;
@@ -88,17 +97,49 @@
     }
   }
 
-  .glider-prev {
-    left: -20px;
-  }
+  // Estilos para los dots (Paginación)
+  .dots {
+    position: absolute; // Aseguramos que se posicione bien si está dentro de un contenedor relativo
+    bottom: 0.5rem; // Lo anclamos al fondo, separado por 0.5rem del padding-bottom del glider-container
+    left: 0;
+    right: 0;
 
-  .glider-next {
-    right: -20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    // Eliminamos el margin-top para usar bottom: 0.5rem
+    margin-top: 0;
+    padding-top: 0;
+
+    .glider-dot {
+      background-color: #ccc;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin: 0 4px;
+      padding: 0;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease, width 0.2s ease, border-radius 0.2s ease;
+      opacity: 0.7;
+
+      &.active {
+        background-color: #46705f;
+        width: 16px;
+        border-radius: 4px;
+        opacity: 1;
+      }
+
+      &:hover {
+        background-color: #888;
+      }
+    }
   }
 }
 
 /* ===========================
-   TARJETAS DE PRODUCTOS
+    TARJETAS DE PRODUCTOS
 =========================== */
 .featured-item {
   position: relative;
@@ -108,7 +149,13 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  // Altura uniforme con Flexbox
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding-bottom: 1rem;
+  min-height: 275px;
 
   &:hover {
     transform: translateY(-4px);
@@ -142,16 +189,16 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 
     &.verduras {
-      background: colors.$green; // tu verde intenso
+      background: colors.$green;
     }
 
     &.huevos {
-      background: #f9d776; // amarillo suave
-      color: #111; // mejor contraste con amarillo
+      background: #f9d776;
+      color: #111;
     }
 
     &.frutas {
-      background: colors.$ligth-green; // 
+      background: colors.$ligth-green;
     }
   }
 
@@ -164,7 +211,7 @@
 }
 
 /* ===========================
-   BOTÓN "IR A LA TIENDA"
+    BOTÓN "IR A LA TIENDA"
 =========================== */
 .go-to-shop {
   text-align: center;
@@ -191,13 +238,13 @@
     }
 
     &:hover {
-      background: linear-gradient(145deg, #00b25b, #2e7d32); /* verde más brillante */
+      background: linear-gradient(145deg, #00b25b, #2e7d32);
     }
   }
 }
 
 /* ===========================
-   BOTONES PERSONALIZADOS
+    BOTONES PERSONALIZADOS
 =========================== */
 .custom-arrow {
   background: colors.$white;
@@ -222,24 +269,30 @@
 }
 
 /* ===========================
-   RESPONSIVE EXTRA
+    RESPONSIVE EXTRA
 =========================== */
 @media (max-width: 640px) {
   .featured-item img {
     height: 140px;
   }
+
+  .featured-item {
+    min-height: 250px;
+  }
 }
 
 /* ===========================
-   AJUSTE PARA MÓVILES ≤420px
+    AJUSTE PARA MÓVILES ≤420px
 =========================== */
 @media (max-width: 420px) {
-  .glider {
-    gap: 0.5rem !important;
-    height: auto;
-    padding-inline: 0.25rem;
+  .glider-container {
+    padding-bottom: 2rem;
   }
 
+  .glider {
+    gap: 0.5rem !important;
+    padding-inline: 0.25rem;
+  }
 
   .glider-track {
     gap: 0.5rem !important;
@@ -248,10 +301,10 @@
   .featured-item {
     max-width: calc(50%);
     border-radius: 8px;
+    min-height: 210px;
 
     img {
       height: 110px;
-      /* más baja para pantallas pequeñas */
     }
 
     h3 {

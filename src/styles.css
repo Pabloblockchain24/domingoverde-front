@@ -471,7 +471,7 @@
 }
 
 /* ===========================
-   CONTENEDOR PRINCIPAL
+    CONTENEDOR PRINCIPAL
 =========================== */
 .featured_container {
   padding: 2rem;
@@ -502,11 +502,12 @@
 }
 
 /* ===========================
-   GLIDER / CARRUSEL
+    GLIDER / CARRUSEL
 =========================== */
 .glider-container {
   position: relative;
-  padding: 1rem;
+  padding-inline: 1rem;
+  padding-bottom: 3rem;
   /* Botones carrusel */
 }
 .glider-container .glider {
@@ -514,13 +515,8 @@
   gap: 1rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 0;
-  height: 275px;
-}
-@media (max-width: 420px) {
-  .glider-container .glider {
-    height: 225px;
-  }
+  padding-bottom: 1rem;
+  margin-bottom: 0;
 }
 .glider-container .glider .glider-track {
   display: flex;
@@ -555,15 +551,41 @@
 .glider-container .custom-arrow:active {
   transform: translateY(-50%) scale(1.1);
 }
-.glider-container .glider-prev {
-  left: -20px;
+.glider-container .dots {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  padding-top: 0;
 }
-.glider-container .glider-next {
-  right: -20px;
+.glider-container .dots .glider-dot {
+  background-color: #ccc;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: 0 4px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, width 0.2s ease, border-radius 0.2s ease;
+  opacity: 0.7;
+}
+.glider-container .dots .glider-dot.active {
+  background-color: #46705f;
+  width: 16px;
+  border-radius: 4px;
+  opacity: 1;
+}
+.glider-container .dots .glider-dot:hover {
+  background-color: #888;
 }
 
 /* ===========================
-   TARJETAS DE PRODUCTOS
+    TARJETAS DE PRODUCTOS
 =========================== */
 .featured-item {
   position: relative;
@@ -573,7 +595,11 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding-bottom: 1rem;
+  min-height: 275px;
 }
 .featured-item:hover {
   transform: translateY(-4px);
@@ -621,7 +647,7 @@
 }
 
 /* ===========================
-   BOTÓN "IR A LA TIENDA"
+    BOTÓN "IR A LA TIENDA"
 =========================== */
 .go-to-shop {
   text-align: center;
@@ -650,11 +676,11 @@
   }
 }
 .go-to-shop .shop-button:hover {
-  background: linear-gradient(145deg, #00b25b, #2e7d32); /* verde más brillante */
+  background: linear-gradient(145deg, #00b25b, #2e7d32);
 }
 
 /* ===========================
-   BOTONES PERSONALIZADOS
+    BOTONES PERSONALIZADOS
 =========================== */
 .custom-arrow {
   background: #FFFFFF;
@@ -676,20 +702,25 @@
 }
 
 /* ===========================
-   RESPONSIVE EXTRA
+    RESPONSIVE EXTRA
 =========================== */
 @media (max-width: 640px) {
   .featured-item img {
     height: 140px;
   }
+  .featured-item {
+    min-height: 250px;
+  }
 }
 /* ===========================
-   AJUSTE PARA MÓVILES ≤420px
+    AJUSTE PARA MÓVILES ≤420px
 =========================== */
 @media (max-width: 420px) {
+  .glider-container {
+    padding-bottom: 2rem;
+  }
   .glider {
     gap: 0.5rem !important;
-    height: auto;
     padding-inline: 0.25rem;
   }
   .glider-track {
@@ -698,10 +729,10 @@
   .featured-item {
     max-width: 50%;
     border-radius: 8px;
+    min-height: 210px;
   }
   .featured-item img {
     height: 110px;
-    /* más baja para pantallas pequeñas */
   }
   .featured-item h3 {
     font-size: 0.8rem;
