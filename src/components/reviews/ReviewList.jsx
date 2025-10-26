@@ -20,10 +20,10 @@ export default function ReviewList() {
 
 
   return (
-    <div className="review-container">
+    <div className="review-home-container">
       <h2> 🔍 Reseñas </h2>
       <p className="review-subtitle"> Reseñas ({totalReviews}) : {averageRating} <Star className="star-title"/> </p>
-      <div className="review-list">
+      <div className="review-home-list">
         {loading ? (
           <Loader />
         ) : (
