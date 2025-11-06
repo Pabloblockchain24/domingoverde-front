@@ -13,7 +13,7 @@ export default function LanderPage() {
       </section>
 
       <section className="landing-hero-section">
-        <img src="/landing_img.jpg" alt="Imagen de paltas" srcset="" />
+        <img src="/lander_banner.jpg" alt="Imagen de paltas" srcset="" />
         <div className="landing-hero-section-content-container">
           <div className="landing-hero-section-content">
             <p>¡Nunca más una palta negra!</p>

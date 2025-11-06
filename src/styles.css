@@ -977,12 +977,12 @@
 }
 @media (max-width: 768px) {
   .landing-reviews-section .landing-review-summary .average-rating-number {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 }
 @media (max-width: 480px) {
   .landing-reviews-section .landing-review-summary .average-rating-number {
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
 }
 .landing-reviews-section .landing-review-summary h3 {
