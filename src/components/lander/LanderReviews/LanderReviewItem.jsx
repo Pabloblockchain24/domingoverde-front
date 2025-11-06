@@ -25,7 +25,7 @@ export default function LanderReviewItem({ review }) {
         />
       </div>
       <div className="landing-review-content">
-        <div className="review-item__stars">
+        <div className="landing-review-item-stars">
           {Array.from({ length: 5 }).map((_, i) => (
             <Star key={i} className={`star ${i < rating ? "active" : ""}`} />
           ))}

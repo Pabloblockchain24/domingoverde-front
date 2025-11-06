@@ -60,12 +60,12 @@ export default function LanderPage() {
         </div>
       </section>
       {/* SOCIAL PROOF SECTION */}
-      {/* <section className="landing-reviews-section">
+      <section className="landing-reviews-section">
         <h2 className="landing-section-title">
-          ¿Que dicen nuestros clientes de la palta hass Domingo Verde?
+          ¿Que opinan nuestros clientes?
         </h2>
         <LanderReviewList />
-      </section> */}
+      </section>
       {/* PRICING + CTA SECTION */}
       <section className="landing-pricing-section">
         <div className="landing-pricing-content">

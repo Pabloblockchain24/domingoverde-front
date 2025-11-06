@@ -50,52 +50,8 @@ export default function ReviewList() {
       
   const totalReviewsAll = reviews?.length || 0;
   
-  // Opciones de filtro
-  const ratingOptions = [null, 5, 4, 3, 2, 1];
-
-  // Función para manejar el cambio en el desplegable
-  const handleFilterChange = (event) => {
-    const value = event.target.value;
-    // Si el valor es '0', lo convertimos a null para "Todas"
-    setFilterRating(value === '0' ? null : Number(value));
-  };
-
-
   return (
     <div className="review-home-container">
-      {/* <h2> 🔍 Reseñas </h2>
-      <p className="review-subtitle"> 
-        Reseñas ({totalReviewsFiltered}) : {averageRating} <Star className="star-title"/> 
-      </p> */}
-
-      {/* Contenedor Desplegable */}
-      {/* <div className="review-filter-bar">
-        <label htmlFor="rating-filter" className="sr-only">Filtrar por valoración</label>
-        <select
-            id="rating-filter"
-            className="filter-dropdown"
-            value={filterRating === null ? '0' : String(filterRating)}
-            onChange={handleFilterChange}
-        >
-          {ratingOptions.map(rating => {
-            const count = rating === null 
-              ? totalReviewsAll
-              : ratingCounts[rating];
-              
-            const value = rating === null ? '0' : String(rating);
-
-            return (
-              <option key={value} value={value}>
-                {rating === null 
-                  ? `Todas las reseñas (${count})` 
-                  : `${getStarIcons(rating)} (${count})` // ⬅️ Íconos Unicode aquí
-                }
-              </option>
-            );
-          })}
-        </select>
-      </div> */}
-
       <div className="landing-review-list">
         {loading ? (
           <Loader />
