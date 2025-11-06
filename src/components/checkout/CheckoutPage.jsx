@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCartStore } from "../../store/cartStore";
 import { useOrders } from "../../context/OrdersContext";
 import Swal from "sweetalert2";
 
-
 export default function CheckoutPage() {
+  const { createOrder, loading } = useOrders();
   const cartItems = useCartStore((state) => state.cart);
   const clearCart = useCartStore((state) => state.clearCart);
-  const { createOrder, loading } = useOrders();
+  const addToCart = useCartStore((state) => state.addToCart);
 
   const [paymentMethod, setPaymentMethod] = useState("efectivo");
   const [form, setForm] = useState({
@@ -17,6 +17,37 @@ export default function CheckoutPage() {
     direccion: "",
     horaEntrega: "",
   });
+
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+    const productTitle = query.get("title");
+
+    if (productTitle) {
+      clearCart();
+
+      let productData = null;
+
+      if (productTitle === "palta-hass-3kg") {
+        productData = {
+          title: "Palta Hass Chilena - Malla 3kg",
+          price: 10000,
+          cantidad: 1,
+          image: "/productos/palta_3.jpg",
+        };
+      } else if (productTitle === "palta-hass-1kg") {
+        productData = {
+          title: "Palta Hass Chilena - Malla 1kg",
+          price: 3500,
+          cantidad: 1,
+          image: "/productos/palta_1.jpg",
+        };
+      }
+
+      if (productData) {
+        addToCart(productData);
+      }
+    }
+  }, [addToCart, clearCart]);
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * (item.cantidad || 1),
@@ -35,7 +66,8 @@ export default function CheckoutPage() {
         title: "Campos incompletos",
         text: "Por favor completa todos los campos de entrega.",
         confirmButtonColor: "#117c0dff",
-      });      return;
+      });
+      return;
     }
     if (!/^\d{9}$/.test(form.celular)) {
       Swal.fire({
@@ -55,7 +87,7 @@ export default function CheckoutPage() {
         precio: item.price,
         cantidad: item.cantidad || 1,
         inventoryItem: item.inventoryItem,
-        inventoryQuantity: item.inventoryQuantity
+        inventoryQuantity: item.inventoryQuantity,
       })),
       total,
       ventaPagina: true,
@@ -204,16 +236,16 @@ export default function CheckoutPage() {
                 onChange={handleInputChange}
                 className="select-input"
               >
-              <option value="">Selecciona una hora</option>
-              {Array.from({ length: 11 }, (_, i) => {
-                const hour = 9 + i; // desde 9 hasta 19
-                const time = `${hour.toString().padStart(2, "0")}:00`;
-                return (
-                  <option key={time} value={time}>
-                    {time}
-                  </option>
-                );
-              })}
+                <option value="">Selecciona una hora</option>
+                {Array.from({ length: 11 }, (_, i) => {
+                  const hour = 9 + i; // desde 9 hasta 19
+                  const time = `${hour.toString().padStart(2, "0")}:00`;
+                  return (
+                    <option key={time} value={time}>
+                      {time}
+                    </option>
+                  );
+                })}
               </select>
             </div>
 
