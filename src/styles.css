@@ -867,6 +867,7 @@
 @media (max-width: 480px) {
   .landing-hero-section .landing-hero-section-content-container {
     transform: translate(-85%, -65%);
+    gap: 0.5rem;
   }
   .landing-hero-section .landing-hero-section-content-container .landing-hero-section-content {
     width: 100%;

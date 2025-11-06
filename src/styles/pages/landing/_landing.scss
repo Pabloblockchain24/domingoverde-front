@@ -143,6 +143,7 @@ $font-family-secondary: 'Roboto', sans-serif;
 
         @media (max-width: 480px) {
             transform: translate(-85%, -65%);
+            gap: 0.5rem;
 
             .landing-hero-section-content {
                 width: 100%;
@@ -166,6 +167,7 @@ $font-family-secondary: 'Roboto', sans-serif;
                 padding: 8px;
                 font-size: 0.65rem;
             }
+
         }
     }
 }
