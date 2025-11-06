@@ -1,68 +1,61 @@
 // src/components/ReviewList.jsx
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import { Star } from "lucide-react";
 import LanderReviewItem from "./LanderReviewItem.jsx";
 import { useReviews } from "../../../context/ReviewsContext.jsx";
 import Loader from "../../loader.jsx";
-import { Star } from "lucide-react";
 
-// Función de ayuda para generar la cadena de estrellas Unicode
-const getStarIcons = (rating) => {
-    // El carácter Unicode U+2B50 es una estrella sólida
-    return '⭐'.repeat(rating);
-}
+// Función para generar estrellas según la calificación
+const renderStars = (rating) => {
+  const rounded = Math.round(rating);
+  return Array.from({ length: 5 }, (_, i) => (
+    <Star
+      key={i}
+      size={18}
+      fill={i < rounded ? "#facc15" : "none"} // Amarillo para las llenas
+      stroke="#facc15" // Bordes del mismo color
+    />
+  ));
+};
 
 export default function ReviewList() {
   const { reviews, getReviews, loading } = useReviews();
-  
-  const [filterRating, setFilterRating] = useState(null); 
 
   useEffect(() => {
     getReviews();
   }, []);
 
-  // ⭐ Cálculo de Recuentos (Memoizado)
-  const ratingCounts = useMemo(() => {
-    const counts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
-    if (reviews) {
-      reviews.forEach(review => {
-        const rating = Math.round(review.rating); 
-        if (rating >= 1 && rating <= 5) {
-          counts[rating] += 1;
-        }
-      });
-    }
-    return counts;
-  }, [reviews]); 
+  const { averageRating, totalReviews } = useMemo(() => {
+    if (!reviews || reviews.length === 0)
+      return { averageRating: 0, totalReviews: 0 };
 
-  // Lógica de Filtrado
-  const filteredReviews = reviews
-    ? reviews.filter(review => {
-        return filterRating === null || Math.round(review.rating) === filterRating;
-      })
-    : [];
-    
-  // Recálculo de totales y promedio con las reseñas FILTRADAS
-  const totalReviewsFiltered = filteredReviews.length || 0;
-  const averageRating =
-    totalReviewsFiltered > 0
-      ? (filteredReviews.reduce((acc, r) => acc + r.rating, 0) / totalReviewsFiltered).toFixed(1)
-      : 0;
-      
-  const totalReviewsAll = reviews?.length || 0;
-  
+    const totalReviews = reviews.length;
+    const averageRating =
+      reviews.reduce((acc, r) => acc + r.rating, 0) / totalReviews;
+
+    return {
+      averageRating: averageRating.toFixed(1),
+      totalReviews,
+    };
+  }, [reviews]);
+
   return (
-    <div className="review-home-container">
+    <div>
+      <div className="landing-review-summary">
+        <h3>Reseñas ({totalReviews})</h3>
+        <div className="average-rating">
+          <span className="average-rating-number">
+            <span>{averageRating}</span> {renderStars((averageRating))}</span>
+        </div>
+      </div>
+
       <div className="landing-review-list">
         {loading ? (
           <Loader />
+        ) : reviews && reviews.length > 0 ? (
+          reviews.map((r) => <LanderReviewItem key={r._id} review={r} />)
         ) : (
-          filteredReviews.map((r) => <LanderReviewItem key={r._id} review={r} />)
-        )}
-        
-        {!loading && filteredReviews.length === 0 && reviews?.length > 0 && (
-          <p className="no-reviews-message">
-            No hay reseñas con {filterRating} estrella(s).
-          </p>
+          <p className="no-reviews-message">Aún no hay reseñas disponibles.</p>
         )}
       </div>
     </div>

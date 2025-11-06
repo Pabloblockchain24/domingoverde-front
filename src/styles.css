@@ -959,6 +959,48 @@
   margin-bottom: 0.5rem;
   text-align: center;
 }
+.landing-reviews-section .landing-review-summary {
+  text-align: center;
+  margin-block: 1rem;
+}
+.landing-reviews-section .landing-review-summary .average-rating-number {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222222;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.landing-reviews-section .landing-review-summary .average-rating-number span {
+  margin-right: 0.5rem;
+}
+@media (max-width: 768px) {
+  .landing-reviews-section .landing-review-summary .average-rating-number {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .landing-reviews-section .landing-review-summary .average-rating-number {
+    font-size: 0.85rem;
+  }
+}
+.landing-reviews-section .landing-review-summary h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #222222;
+  margin-bottom: 0.5rem;
+}
+@media (max-width: 768px) {
+  .landing-reviews-section .landing-review-summary h3 {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 480px) {
+  .landing-reviews-section .landing-review-summary h3 {
+    font-size: 0.85rem;
+  }
+}
 .landing-reviews-section .landing-review-list {
   display: flex;
   flex-wrap: wrap;
