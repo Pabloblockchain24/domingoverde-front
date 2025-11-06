@@ -86,11 +86,19 @@ export default function LanderPage() {
             </div>
 
             <div className="landing-pricing-card">
-              <h3 className="landing-pricing-card-title">3kg Palta Hass</h3>
-              <p className="landing-pricing-card-price">$9.990 ($3330/kg)</p>
-              <p className="landing-pricing-card-description">
-                Delivery gratis en la zona
-              </p>
+              <div className="landing-pricing-card-header">
+                <img src="/productos/palta_3.jpg" alt="Palta hass 3kg" />
+                <div>
+                  <h3 className="landing-pricing-card-title">3kg Palta Hass</h3>
+                  <p className="landing-pricing-card-price">
+                    $9.990 ($3330/kg)
+                  </p>
+                  <p className="landing-pricing-card-description">
+                    Delivery gratis en la zona
+                  </p>
+                </div>
+              </div>
+
               <a
                 id="landing-checkout-section"
                 href="/checkout?title=palta-hass-3kg"
@@ -101,11 +109,17 @@ export default function LanderPage() {
             </div>
 
             <div className="landing-pricing-card">
-              <h3 className="landing-pricing-card-title">1kg palta hass</h3>
-              <p className="landing-pricing-card-price">$3.490/kg </p>
-              <p className="landing-pricing-card-description">
-                Delivery $3,000 clp.
-              </p>
+              <div className="landing-pricing-card-header">
+                <img src="/productos/palta_1.jpg" alt="Palta hass 1kg" />
+                <div>
+                <h3 className="landing-pricing-card-title">1kg palta hass</h3>
+                <p className="landing-pricing-card-price">$3.490/kg </p>
+                <p className="landing-pricing-card-description">
+                  Delivery $3,000 clp.
+                </p>
+                </div>
+
+              </div>
 
               <a
                 id="landing-checkout-section"

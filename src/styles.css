@@ -1171,6 +1171,17 @@
   border: 1px solid #e6f3e6;
   cursor: pointer;
 }
+.landing-pricing-section .landing-pricing-content .landing-pricing-cards .landing-pricing-card .landing-pricing-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.landing-pricing-section .landing-pricing-content .landing-pricing-cards .landing-pricing-card .landing-pricing-card-header img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 1rem;
+}
 .landing-pricing-section .landing-pricing-content .landing-pricing-cards .landing-pricing-card:hover {
   box-shadow: 0 14px 25px rgba(0, 0, 0, 0.12);
   border-color: #b9e4b2;

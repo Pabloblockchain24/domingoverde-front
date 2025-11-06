@@ -495,6 +495,19 @@ $font-family-secondary: 'Roboto', sans-serif;
                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
                 transition: all 0.3s ease;
                 border: 1px solid #e6f3e6;
+
+                .landing-pricing-card-header{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 1rem;
+
+                    img{
+                        width: 100px;
+                        height: auto;
+                        margin-bottom: 1rem;
+                    }
+                }
                 cursor: pointer;
 
                 &:hover {
