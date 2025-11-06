@@ -1743,7 +1743,13 @@
 }
 .payment-card.active {
   border-color: rgba(61, 220, 133, 0.3764705882);
-  background-color: #F7F9FC;
+  background-color: rgba(191, 207, 189, 0.4745098039);
+}
+
+.payment-card.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed !important;
 }
 
 /* ===== Responsive ===== */

@@ -161,11 +161,11 @@ export default function CheckoutPage() {
                 <div
                   className={`payment-card ${
                     paymentMethod === "tarjeta" ? "active" : ""
-                  }`}
-                  onClick={() => setPaymentMethod("tarjeta")}
+                  }disabled`}
+                  onClick={(e) => e.preventDefault()}
                 >
                   <i className="fas fa-credit-card"></i>
-                  <span>Tarjeta débito/crédito</span>
+                  <span>Tarjeta débito/crédito (proximamente)</span>
                 </div>
               </div>
             </div>

@@ -91,7 +91,7 @@ export default function LanderPage() {
                 <div>
                   <h3 className="landing-pricing-card-title">3kg Palta Hass</h3>
                   <p className="landing-pricing-card-price">
-                    $9.990 ($3330/kg)
+                    $9.990 ($3.330/kg)
                   </p>
                   <p className="landing-pricing-card-description">
                     Delivery gratis en la zona
