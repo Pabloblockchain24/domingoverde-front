@@ -1560,14 +1560,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #F7F9FC;
 }
 
 .checkout-page {
   max-width: 500px;
   margin: 2rem;
-  background: #F7F9FC;
-  padding: 2.5rem 2rem;
-  border-radius: 12px;
+  background: #FFFFFF;
+  padding: 3rem 2rem;
   box-shadow: 0 6px 18px rgba(39, 39, 39, 0.3);
   /* Lista de productos */
   /* Total */
@@ -1691,7 +1691,6 @@
   font-size: 1.05rem;
   font-weight: 600;
   border: none;
-  border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.25s ease;
 }
@@ -1772,6 +1771,62 @@
   }
   .payment-card span {
     font-size: 0.75rem;
+  }
+}
+@media (max-width: 480px) {
+  .checkout-page {
+    padding: 3rem 1.5rem;
+    /* Secciones */
+  }
+  .checkout-page h2 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  .checkout-page .checkout-list {
+    margin-bottom: 1rem;
+  }
+  .checkout-page .checkout-total {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .checkout-page .checkout-section {
+    margin: 1rem 0;
+  }
+  .checkout-page .checkout-section h3 {
+    font-size: 1rem;
+  }
+  .checkout-page .checkout-section input[type=text],
+  .checkout-page .checkout-section input[type=tel],
+  .checkout-page .checkout-section select.select-input {
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+  }
+  .checkout-page .checkout-section select.select-input {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='gray' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+  }
+  .checkout-page .finish-btn {
+    padding: 0.7rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .checkout-page a {
+    font-size: 0.8rem;
+  }
+  .payment-card {
+    padding: 0.75rem;
+  }
+  .payment-card i {
+    font-size: 1.2rem;
+  }
+  .payment-card span {
+    font-size: 0.7rem;
+    line-height: 1;
   }
 }
 .compraconfirmada-wrapper {
