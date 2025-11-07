@@ -1560,7 +1560,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #F7F9FC;
+  background-color: rgba(158, 158, 158, 0.4745098039);
 }
 
 .checkout-page {

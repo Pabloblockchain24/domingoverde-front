@@ -1,4 +1,6 @@
 import { useCartStore } from "../../store/cartStore.js";
+import { useReviews } from "../../context/ReviewsContext.jsx";
+import { useEffect, useMemo } from "react";
 import { toast } from "react-toastify";
 import { Star } from "lucide-react";
 
@@ -10,10 +12,31 @@ export default function ProductItemTienda({
   category,
   inventoryItem,
   inventoryQuantity,
-  rating = 4.3, // ⭐ Valor promedio, puede tener decimales
-  reviews = 12, // cantidad de reseñas
 }) {
   const addToCart = useCartStore((state) => state.addToCart);
+  const { reviews, getReviews } = useReviews();
+
+  // 🔹 Cargar las reseñas si aún no están cargadas
+  useEffect(() => {
+    if (!reviews.length) getReviews();
+  }, []);
+
+  // 🔹 Filtrar las reseñas que coinciden con el producto actual
+  const productReviews = useMemo(() => {
+    return reviews.filter(
+      (r) => r.category?.toLowerCase() === inventoryItem?.toLowerCase()
+    );
+  }, [reviews, inventoryItem]);
+
+  // 🔹 Calcular rating promedio y cantidad
+  const { averageRating, totalReviews } = useMemo(() => {
+    if (!productReviews.length) return { averageRating: 0, totalReviews: 0 };
+    const sum = productReviews.reduce((acc, r) => acc + (r.rating || 0), 0);
+    return {
+      averageRating: (sum / productReviews.length).toFixed(1),
+      totalReviews: productReviews.length,
+    };
+  }, [productReviews]);
 
   const formattedPrice = price.toLocaleString("es-CL", {
     style: "currency",
@@ -34,19 +57,15 @@ export default function ProductItemTienda({
     toast.success(`✅ "${title}" se agregó al carrito`);
   };
 
-  const categoryClass = category ? category.toLowerCase() : "";
-
-  // Calcular número de estrellas llenas, parciales y vacías
-  const fullStars = Math.floor(rating);
-  const hasHalfStar = rating % 1 >= 0.25; // si el decimal es relevante
+  // 🔹 Renderizado de estrellas
+  const fullStars = Math.floor(averageRating);
+  const hasHalfStar = averageRating % 1 >= 0.25;
   const totalStars = 5;
 
   const stars = Array.from({ length: totalStars }, (_, i) => {
     if (i < fullStars) {
-      // Estrella completamente llena
       return <Star key={i} size={16} fill="#FFD700" stroke="#FFD700" />;
     } else if (i === fullStars && hasHalfStar) {
-      // Estrella parcialmente rellena
       return (
         <div
           key={i}
@@ -80,29 +99,27 @@ export default function ProductItemTienda({
         </div>
       );
     } else {
-      // Estrella vacía
       return <Star key={i} size={16} stroke="#ccc" />;
     }
   });
 
+  const categoryClass = category ? category.toLowerCase() : "";
+
   return (
     <div className="product-card">
-      <div>
-        {" "}
-        {category && (
-          <span className={`product-category ${categoryClass}`}>
-            {category}
-          </span>
-        )}
-        <img src={image} alt={title} />
-        <div className="product-card-content">
-          <h3>{title}</h3>
-          <p className="price">{formattedPrice}</p>
+      {category && (
+        <span className={`product-category ${categoryClass}`}>{category}</span>
+      )}
+      <img src={image} alt={title} />
+      <div className="product-card-content">
+        <h3>{title}</h3>
+        <p className="price">{formattedPrice}</p>
 
-          <div className="rating">
-            <div className="stars">{stars}</div>
-            <span className="reviews">({reviews} reviews)</span>
-          </div>
+        <div className="rating">
+          <div className="stars">{stars}</div>
+          <span className="reviews">
+            ({totalReviews} {totalReviews === 1 ? "review" : "reviews"})
+          </span>
         </div>
       </div>
 
