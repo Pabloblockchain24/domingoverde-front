@@ -8,7 +8,7 @@ export default function ReviewPage() {
   const cameraInputRef = useRef(null);
   const galleryInputRef = useRef(null);
 
-  const MAX_FILE_SIZE_MB = 2; // Máximo permitido en Megabytes
+  const MAX_FILE_SIZE_MB = 4; // Máximo permitido en Megabytes
   const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024; // 2 MB en bytes
 
   const [review, setReview] = useState({
@@ -19,6 +19,7 @@ export default function ReviewPage() {
     photo: "",
     token: "",
     orderId: "",
+    category: "",
   });
 
   const [hoverRating, setHoverRating] = useState(0);
@@ -44,6 +45,7 @@ export default function ReviewPage() {
             product: data.productos.join(", "),
             orderId: data.orderId,
             name: data.nombre || "",
+            category: data.category || "",
           }));
           setTokenValid(true);
         } else {
@@ -101,13 +103,16 @@ export default function ReviewPage() {
       });
       return;
     }
-    if (review.photo instanceof File && review.photo.size > MAX_FILE_SIZE_BYTES) {
-        Swal.fire({
-            icon: "error",
-            title: "Error de validación",
-            text: `La foto seleccionada excede el límite de ${MAX_FILE_SIZE_MB} MB.`,
-        });
-        return;
+    if (
+      review.photo instanceof File &&
+      review.photo.size > MAX_FILE_SIZE_BYTES
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Error de validación",
+        text: `La foto seleccionada excede el límite de ${MAX_FILE_SIZE_MB} MB.`,
+      });
+      return;
     }
 
     try {
@@ -117,11 +122,15 @@ export default function ReviewPage() {
       formData.append("comment", review.comment);
       formData.append("orderId", review.orderId);
       formData.append("product", review.product);
+      formData.append("category", review.category);
 
       if (review.photo instanceof File) {
         formData.append("photo", review.photo);
       }
 
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);
+      }
       await createReview(formData);
 
       Swal.fire({
@@ -249,7 +258,7 @@ export default function ReviewPage() {
               type="file"
               accept="image/*"
               style={{ display: "none" }}
-              onChange={handleFileChange} 
+              onChange={handleFileChange}
             />
 
             {/* Vista previa */}

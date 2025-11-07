@@ -3420,7 +3420,7 @@ button:hover {
 .review-container {
   height: 100vh;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   padding: 1rem;
   padding-top: 5vh;
