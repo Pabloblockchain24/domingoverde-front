@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useOrders } from "../../../../context/OrdersContext";
 import Swal from "sweetalert2";
 
-
-
 export default function VentaModal({ onClose, ventaAEditar, onGuardar }) {
 
   const { createOrder, editOrder } = useOrders();

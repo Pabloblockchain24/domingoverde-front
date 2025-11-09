@@ -1,0 +1,24 @@
+---
+export const prerender = false;
+import { getRByApi } from "../../api/r.js";
+
+const { code } = Astro.params;
+let redirectUrl = null;
+
+try {
+  const { data } = await getRByApi(code);
+  redirectUrl = data.originalUrl;
+
+  // Si la URL existe, redirigir de inmediato
+  if (redirectUrl) {
+    return Astro.redirect(redirectUrl);
+  }
+
+} catch (e) {
+  console.error("Error al obtener la URL:", e);
+}
+---
+
+<!-- SOLO si no existe enlace válido -->
+<h1>El enlace no existe o expiró.</h1>
+

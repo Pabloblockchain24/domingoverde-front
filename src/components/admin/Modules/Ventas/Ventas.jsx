@@ -80,16 +80,20 @@ export default function Ventas() {
     try {
       const data = await generateReviewToken(ventaId);
 
+    if (!data?.shortUrl) {
+      throw new Error("No se recibió shortUrl desde el servidor");
+    }
+
       Swal.fire({
         title: "Token de review generado ✅",
         html: `
-        <p> ${data.reviewLink}</p>
+        <p> ${data.shortUrl}</p>
       `,
         icon: "success",
         confirmButtonText: "Copiar link",
       }).then(() => {
         // Copiar link al portapapeles
-        navigator.clipboard.writeText(data.reviewLink);
+        navigator.clipboard.writeText(data.shortUrl);
       });
     } catch (error) {
       console.error(error);
